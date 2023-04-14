@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var model = DataModel()
+
     @State var outputLog: String =
     " 1 Sarsie version 1\n"
     + " 2 Output log\n"
@@ -22,7 +24,8 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            Color.black.ignoresSafeArea(.all)
+            //Color.black.ignoresSafeArea(.all)
+            Color(red: 0.1, green: 0.1, blue: 0.1).ignoresSafeArea(.all)
             VStack {
                 HStack {
                     Spacer()
@@ -39,24 +42,33 @@ struct ContentView: View {
                     }
                     .padding()
                 }
-                    Text("SARSIE")
-                        .bold()
-                        .font(.system(size: 40))
-                        .foregroundColor(.white)
-                    // Comment this TextField and Image for release version.
-                    TextField("log", text: $outputLog, axis: .vertical)
-                        //.foregroundColor(.blue)
-                        .background(.gray)
-                        .frame(width: 300, height: 150)
-                Image("ArmoredCarp01")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 300, height: 200)
+                Text("SARSIE")
+                    .bold()
+                    .font(.system(size: 40))
+                    .foregroundColor(.white)
+                // Comment this TextField and Image for release version.
+                TextField("log", text: $outputLog, axis: .vertical)
+                    //.foregroundColor(.blue)
+                    .background(.gray)
+                    .frame(width: 300, height: 150)
+                //Image("ArmoredCarp01")
+                //NavigationStack {
+                    ViewfinderView(image:  $model.viewfinderImage)
+                    //.resizable()
+                    //.scaledToFit()
+                        .frame(width: 300, height: 200)
+                        .task {
+                            await model.camera.start()
+                        }
                     // End comment section.
                     Spacer()
+                //}
             }
         }
         .buttonStyle(.plain)
+        //.task {
+        //    await model.camera.start()
+        //}
     }
 }
 
