@@ -11,16 +11,10 @@ struct ContentView: View {
     @StateObject private var model = DataModel()
 
     @State var outputLog: String =
-    " 1 Sarsie version 1\n"
-    + " 2 Output log\n"
-    + " 3 A place to\n"
-    + " 4 write debug info.\n"
-    + " 5 This will be removed\n"
-    + " 6 in the published\n"
-    + " 7 version. This can\n"
-    + " 8 display intermediate\n"
-    + " 9 results and progress\n"
-    + "10 information.\n"
+    "Sarsie version 2\n"
+    + "Output log\n"
+    + "To use this for debugg, write\n"
+    + "to State var outputlog.\n"
     
     var body: some View {
         ZStack {
@@ -49,7 +43,8 @@ struct ContentView: View {
                 TextField("log", text: $outputLog, axis: .vertical)
                     //.foregroundColor(.blue)
                     .background(.gray)
-                    .frame(width: 300, height: 150)
+                    .frame(width: 300, height: 120)
+                    .padding()
                 //Image("ArmoredCarp01")
                 //NavigationStack {
                 //.resizable()
@@ -57,7 +52,7 @@ struct ContentView: View {
                 //}
                 // Comment this ViewfinderView for release version.
                 ViewfinderView(image:  $model.viewfinderImage)
-                    .frame(width: 300, height: 200)
+                    .frame(width: 180, height: 200)
                     .task {
                         await model.camera.start()
                     }
