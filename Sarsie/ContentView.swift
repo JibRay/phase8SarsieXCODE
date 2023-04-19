@@ -24,7 +24,6 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            //Color.black.ignoresSafeArea(.all)
             Color(red: 0.1, green: 0.1, blue: 0.1).ignoresSafeArea(.all)
             VStack {
                 HStack {
@@ -46,23 +45,23 @@ struct ContentView: View {
                     .bold()
                     .font(.system(size: 40))
                     .foregroundColor(.white)
-                // Comment this TextField and Image for release version.
+                // Comment this TextField for release version.
                 TextField("log", text: $outputLog, axis: .vertical)
                     //.foregroundColor(.blue)
                     .background(.gray)
                     .frame(width: 300, height: 150)
                 //Image("ArmoredCarp01")
                 //NavigationStack {
-                    ViewfinderView(image:  $model.viewfinderImage)
-                    //.resizable()
-                    //.scaledToFit()
-                        .frame(width: 300, height: 200)
-                        .task {
-                            await model.camera.start()
-                        }
-                    // End comment section.
-                    Spacer()
+                //.resizable()
+                //.scaledToFit()
                 //}
+                // Comment this ViewfinderView for release version.
+                ViewfinderView(image:  $model.viewfinderImage)
+                    .frame(width: 300, height: 200)
+                    .task {
+                        await model.camera.start()
+                    }
+                Spacer()
             }
         }
         .buttonStyle(.plain)

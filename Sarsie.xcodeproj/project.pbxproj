@@ -29,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C4AD48929F062AD0073D219 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0C7F662E29CD04360052DEB9 /* Sarsie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sarsie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C7F663129CD04360052DEB9 /* SarsieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SarsieApp.swift; sourceTree = "<group>"; };
 		0C7F663329CD04360052DEB9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -81,6 +82,7 @@
 		0C7F663029CD04360052DEB9 /* Sarsie */ = {
 			isa = PBXGroup;
 			children = (
+				0C4AD48929F062AD0073D219 /* Info.plist */,
 				0CD3CBE329E1C91100436D6E /* CachedImageManager.swift */,
 				0CD3CBE529E1C91100436D6E /* Camera.swift */,
 				0CD3CBEC29E1C91100436D6E /* CameraView.swift */,
@@ -330,6 +332,8 @@
 				DEVELOPMENT_TEAM = 48Q63RP5WE;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Sarsie/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -359,6 +363,8 @@
 				DEVELOPMENT_TEAM = 48Q63RP5WE;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Sarsie/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
