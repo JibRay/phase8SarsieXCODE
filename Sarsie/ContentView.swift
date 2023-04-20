@@ -14,7 +14,7 @@ struct ContentView: View {
     "Sarsie version 2\n"
     + "Output log\n"
     + "To use this for debugg, write\n"
-    + "to State var outputlog.\n"
+    + "to State var outputLog.\n"
     
     var body: some View {
         ZStack {
@@ -43,20 +43,20 @@ struct ContentView: View {
                 TextField("log", text: $outputLog, axis: .vertical)
                     //.foregroundColor(.blue)
                     .background(.gray)
-                    .frame(width: 300, height: 120)
+                    .frame(width: 300, height: 140)
                     .padding()
                 //Image("ArmoredCarp01")
                 //NavigationStack {
                 //.resizable()
                 //.scaledToFit()
                 //}
+                Spacer()
                 // Comment this ViewfinderView for release version.
                 ViewfinderView(image:  $model.viewfinderImage)
-                    .frame(width: 180, height: 200)
+                    .frame(width: 300, height: 200)
                     .task {
                         await model.camera.start()
                     }
-                Spacer()
             }
         }
         .buttonStyle(.plain)
