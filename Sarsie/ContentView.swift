@@ -10,33 +10,30 @@ import SwiftUI
 struct ContentView: View {
     @StateObject private var model = DataModel()
 
-    @State var outputLog: String =
-    "Sarsie version 2\n"
-    + "Output log\n"
-    + "To use this for debugg, write\n"
-    + "to State var outputLog.\n"
+    @State var outputLog: String = "Sarsie version 3\n"
     
     var body: some View {
         ZStack {
             Color(red: 0.1, green: 0.1, blue: 0.1).ignoresSafeArea(.all)
             VStack {
-                HStack {
-                    Spacer()
-                    ZStack {
-                        // This button initiates the test.
-                        Button ("", action: {})
-                            .frame (width: 150, height: 150)
-                            .background(.yellow)
-                            .clipShape(Circle())
-                        Circle()
-                            .strokeBorder(.white, lineWidth: 3)
-                            .frame(width: 165, height: 165)
-                        
+                Button {
+                    outputLog += "Start test\n"
+                    model.camera.takePhoto()
+                } label: {
+                    Label {
+                        Text("")
+                    } icon: {
+                        ZStack {
+                            Circle()
+                                .strokeBorder(.white, lineWidth: 3)
+                                .frame(width: 165, height: 165)
+                            Circle()
+                                .fill(.yellow)
+                                .frame(width: 150, height: 150)
+                        }
                     }
-                    .padding()
                 }
                 Text("SARSIE")
-                    .bold()
                     .font(.system(size: 40))
                     .foregroundColor(.white)
                 // Comment this TextField for release version.
@@ -45,11 +42,6 @@ struct ContentView: View {
                     .background(.gray)
                     .frame(width: 300, height: 140)
                     .padding()
-                //Image("ArmoredCarp01")
-                //NavigationStack {
-                //.resizable()
-                //.scaledToFit()
-                //}
                 Spacer()
                 // Comment this ViewfinderView for release version.
                 ViewfinderView(image:  $model.viewfinderImage)
@@ -60,9 +52,6 @@ struct ContentView: View {
             }
         }
         .buttonStyle(.plain)
-        //.task {
-        //    await model.camera.start()
-        //}
     }
 }
 
