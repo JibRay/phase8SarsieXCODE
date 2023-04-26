@@ -7,12 +7,26 @@
 
 import SwiftUI
 
+struct Needle: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        
+        path.move(to: CGPoint(x: rect.midX + 5, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.midX - 5, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
+        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+        path.addLine(to: CGPoint(x: rect.midX, y: rect.minY))
+        
+        return path
+    }
+}
+
 struct MeterView: View {
     let _width: CGFloat?
     let _height: CGFloat?
     let _value: Double?
     
-    let minAngle: Double = 0.2
+    let minAngle: Double = 0.2 // Radians
     let maxAngle: Double = 0.8
     let angleStep: Double?
     
@@ -33,8 +47,9 @@ struct MeterView: View {
         let pointerPivot = Circle().path(in: pointerPivotBox)
         let pointerRadius = 0.65 * _height!
         let pointerColor = _value! > 0.5 ? Color.red : Color.green
-        //let meterDot = Circle().path(in: CGRect(x: 150, y: 100, width: 15, height: 15))
-        
+        let needleSize = CGSize(width: 20, height: 1.2 * pointerRadius)
+        let needleBox = CGRect(origin: CGPoint(x: pointerCenter.x - 10, y: 30), size: needleSize)
+        let needle = Needle().path(in: needleBox)
         let meterDots = meterDots(center: pointerCenter, radius: pointerRadius)
         
         Canvas {
@@ -43,6 +58,7 @@ struct MeterView: View {
             for meterDot in meterDots {
                 context.fill(meterDot, with: .color(.white))
             }
+            context.fill(needle, with: .color(pointerColor))
         }
         .frame(width: _width, height: _height)
         .border(Color.blue)

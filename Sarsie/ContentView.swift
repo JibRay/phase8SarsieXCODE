@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var testValue = 0.49
     @StateObject private var model = DataModel()
 
     @State var outputLog: String = "Sarsie version 3\n"
@@ -36,7 +37,14 @@ struct ContentView: View {
                 Text("SARSIE")
                     .font(.system(size: 40))
                     .foregroundColor(.white)
-                MeterView(width: 300, height: 225, value: 0.51)
+                MeterView(width: 300, height: 225, value: testValue)
+                GraphView(width: 300, height: 140)
+                Text("GPS: 42.040919,-74.117995")
+                    .font(.system(size: 20))
+                    .foregroundColor(.white)
+                Text("3/30/2023 3:30:24 PM EDT")
+                    .font(.system(size: 20))
+                    .foregroundColor(.white)
                 Spacer()
                 // Log TextField & ViewfinderView are used just for
                 // testing.
