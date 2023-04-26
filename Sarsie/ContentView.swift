@@ -14,7 +14,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            Color(red: 0.1, green: 0.1, blue: 0.1).ignoresSafeArea(.all)
+            Color(.black).ignoresSafeArea(.all)
             VStack {
                 Button {
                     outputLog += "Start test\n"
@@ -36,19 +36,23 @@ struct ContentView: View {
                 Text("SARSIE")
                     .font(.system(size: 40))
                     .foregroundColor(.white)
-                // Comment this TextField for release version.
+                MeterView(width: 300, height: 225, value: 0.51)
+                Spacer()
+                // Log TextField & ViewfinderView are used just for
+                // testing.
+                /*
                 TextField("log", text: $outputLog, axis: .vertical)
                     //.foregroundColor(.blue)
                     .background(.gray)
                     .frame(width: 300, height: 140)
                     .padding()
                 Spacer()
-                // Comment this ViewfinderView for release version.
                 ViewfinderView(image:  $model.viewfinderImage)
                     .frame(width: 300, height: 200)
                     .task {
                         await model.camera.start()
                     }
+                 */
             }
         }
         .buttonStyle(.plain)

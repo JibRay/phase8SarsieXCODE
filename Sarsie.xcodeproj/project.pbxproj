@@ -26,6 +26,7 @@
 		0CD3CBFB29E1C91100436D6E /* PhotoAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD3CBEE29E1C91100436D6E /* PhotoAsset.swift */; };
 		0CD3CBFC29E1C91100436D6E /* Preview Content in Resources */ = {isa = PBXBuildFile; fileRef = 0CD3CBEF29E1C91100436D6E /* Preview Content */; };
 		0CD7929629E5D1C50097C61C /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CD7929529E5D1C50097C61C /* Media.xcassets */; };
+		0CFD08BF29F818CC00EF99FF /* MeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFD08BE29F818CC00EF99FF /* MeterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		0CD3CBEE29E1C91100436D6E /* PhotoAsset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAsset.swift; sourceTree = "<group>"; };
 		0CD3CBEF29E1C91100436D6E /* Preview Content */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Preview Content"; sourceTree = "<group>"; };
 		0CD7929529E5D1C50097C61C /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		0CFD08BE29F818CC00EF99FF /* MeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				0C7F663529CD04370052DEB9 /* Assets.xcassets */,
 				0C7F663729CD04370052DEB9 /* Preview Content */,
 				0CD7929529E5D1C50097C61C /* Media.xcassets */,
+				0CFD08BE29F818CC00EF99FF /* MeterView.swift */,
 			);
 			path = Sarsie;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 			files = (
 				0C7F663429CD04360052DEB9 /* ContentView.swift in Sources */,
 				0CD3CBF029E1C91100436D6E /* CachedImageManager.swift in Sources */,
+				0CFD08BF29F818CC00EF99FF /* MeterView.swift in Sources */,
 				0CD3CBF929E1C91100436D6E /* CameraView.swift in Sources */,
 				0CD3CBFB29E1C91100436D6E /* PhotoAsset.swift in Sources */,
 				0CD3CBF229E1C91100436D6E /* Camera.swift in Sources */,
