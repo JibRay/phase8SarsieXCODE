@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var testValue = 0.49
+    @State var testValue = 0.0
     @StateObject private var model = DataModel()
 
     @State var outputLog: String = "Sarsie version 3\n"
@@ -20,6 +20,8 @@ struct ContentView: View {
                 Button {
                     outputLog += "Start test\n"
                     model.camera.takePhoto()
+                    testValue += 0.1
+                    testValue = testValue > 1.0 ? 0.0 : testValue
                 } label: {
                     Label {
                         Text("")
