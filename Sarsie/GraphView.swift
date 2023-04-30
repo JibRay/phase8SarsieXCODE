@@ -23,7 +23,23 @@ struct GraphView: View {
     var body: some View {
         Canvas { context, size in
             var path = Path()
+            var y: CGFloat
+            for i in 0...2 {
+                y = (CGFloat(i + 1) * height!) / 4
+                path.move(to: CGPoint(x: 0.0, y: y))
+                path.addLine(to: CGPoint(x: width!, y: y))
+            }
+            context.stroke(path, with: .color(.blue),
+                           style: StrokeStyle(lineWidth: 2))
+            path = Path()
+            y = height! / 2
+            path.move(to: CGPoint(x: 0.0, y: y))
+            path.addLine(to: CGPoint(x: width!, y: y))
+            context.stroke(path, with: .color(.red),
+                           style: StrokeStyle(lineWidth: 2))
+
             if !points.isEmpty {
+                path = Path()
                 for pathPoint in points {
                     if path.isEmpty {
                         path.move(to: pathPoint)
@@ -33,7 +49,7 @@ struct GraphView: View {
                 }
                 context.stroke(
                     path, with: .color(.black),
-                    style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round))
+                    style: StrokeStyle(lineWidth: 3))
             }
         }
         .frame(width: width, height: height)
