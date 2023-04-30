@@ -32,9 +32,9 @@ struct MeterView: View {
     var pointerCenter = CGPoint(x: 0, y: 0)
     let offsets: [(x: Double, y: Double)] =
     [
-        (-180.0, 53.0),
-        (-141.0, 53.0),
-        (-103.0, 48.0),
+        (-179.0, 51.0),
+        (-140.0, 53.0),
+        (-102.0, 47.0),
         (-66.0, 37.0),
         (-31.0, 22.0),
         (0.0, 0.0),
@@ -55,7 +55,6 @@ struct MeterView: View {
     }
     
     var body: some View {
-        
         let origin = CGPoint(x: pointerCenter.x - 15, y: toTop(pointerCenter.y) + 15)
         let originSize = CGSize(width: 30, height: 30)
         let pointerPivotBox = CGRect(origin: origin, size: originSize)
@@ -81,7 +80,7 @@ struct MeterView: View {
             context.fill(rotatedNeedle, with: .color(pointerColor))
         }
         .frame(width: _width, height: _height)
-        .border(Color.blue)
+        //.border(Color.blue)
     }
     
     // Move Y zero from the bottom of a rectangle to the top.

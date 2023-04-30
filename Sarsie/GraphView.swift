@@ -7,47 +7,104 @@
 
 import SwiftUI
 
-struct Plot: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        
-        path.move(to: CGPoint(x: rect.minX, y: rect.midY))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.midY))
-        path.stroke(.red, lineWidth: 4)
-        
-        return path
-    }
-}
-
 struct GraphView: View {
-    let _width: CGFloat?
-    let _height: CGFloat?
+    let width: CGFloat?
+    let height: CGFloat?
+    var points = [CGPoint]()
     
-    var plotBox = CGRect()
-    
-    init(width: CGFloat, height: CGFloat) {
-        _width = width
-        _height = height
-        plotBox.origin = CGPoint(x: 0, y: 0)
-        plotBox.size = CGSize(width: _width!, height: _height!)
+    // Size of points must be <= 100. The X and Y in points ranges
+    // from 0.0 to 1.0.
+    init(width: CGFloat, height: CGFloat, points: [CGPoint]) {
+        self.width = width
+        self.height = height
+        self.points = scalePoints(points)
     }
 
     var body: some View {
-        /*
-        Path() { path in
-            path.move(to: CGPoint(x: 0, y: _height! / 2))
-            path.addLine(to: CGPoint(x: _width!, y: _height! / 2))
+        Canvas { context, size in
+            var path = Path()
+            if !points.isEmpty {
+                for pathPoint in points {
+                    if path.isEmpty {
+                        path.move(to: pathPoint)
+                    } else {
+                        path.addLine(to: pathPoint)
+                    }
+                }
+                context.stroke(
+                    path, with: .color(.black),
+                    style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round))
+            }
         }
-        .stroke(Color.red, lineWidth: 4)
-         */
-        let plot = Plot().path(in: plotBox)
-        
-        Canvas {
-            context, size in
-            context.fill(plot, with: .color(.red))
-        }
-        .frame(width: _width, height: _height)
+        .frame(width: width, height: height)
         .background(Color.white)
-        .border(Color.blue)
+    }
+    
+    // Scale the input points to fit the canvas. Range of x and y
+    // in points must be 0.0 to 1.0.
+    func scalePoints(_ points: [CGPoint]) -> [CGPoint] {
+        var scaledPoints = [CGPoint]()
+        
+        if !points.isEmpty {
+            // Scale factors:
+            let kx = width!
+            let ky = height!
+            
+            for point in points {
+                let x = kx * point.x
+                let y = height! - (ky * point.y)
+                scaledPoints.append(CGPoint(x: x, y: y))
+            }
+        }
+        
+        return scaledPoints
     }
 }
+
+/*
+ struct ChartValue {
+ let value: Double
+ let underlyingValue: Double
+ }
+ 
+ class ChartModel {
+ let values: [ChartValue]
+ 
+ init (values: [ChartValue]) {
+ self.values = values
+ }
+ }
+ 
+ extension ChartModel {
+ static func from(rawValues: [Double]) -> ChartModel? {
+ // If we have more than one value get the largest. Else fail.
+ guard rawValues.count > 1, let largestValue = rawValues.sorted(by: >).first else {
+ return nil
+ }
+ let chartValues = rawValues.map { rawValue -> ChartValue in
+ let value = rawValue / largestValue
+ return ChartValue(value: max(0, value), underlyingValue: rawValue)
+ 
+ }
+ return ChartModel(values: chartValues)
+ }
+ }
+ 
+ protocol ChartView: View {
+ var insets: CGFloat { get }
+ var stokeWidth: CGFloat { get }
+ var color: Color { get }
+ var model: ChartModel { get }
+ }
+ 
+ extension ChartView {
+ func makeChartPoints(from dataPoints: [ChartValue], size: CGSize) -> [ChartValue]  {
+ var currentX: CGFloat = insets
+ var size = size
+ size.height = size.height - insets * 2
+ size.width = size.width - insets * 2
+ currentX += xValuesPerPoint(size: size)
+ return ChartPoint()
+ }
+ }
+ */

@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State var testValue = 0.0
     @StateObject private var model = DataModel()
+    @State var graphPoints = [CGPoint]()
 
     @State var outputLog: String = "Sarsie version 3\n"
     
@@ -22,6 +23,12 @@ struct ContentView: View {
                     model.camera.takePhoto()
                     testValue += 0.1
                     testValue = testValue > 1.0 ? 0.0 : testValue
+                    graphPoints = [CGPoint]()
+                    for i in  0..<100 {
+                        let x = Double(i) / 100.0
+                        let y = 0.5 + 0.5 * cos(Double.pi + ((Double(i) * 2.0 * Double.pi) / 100.0))
+                        graphPoints.append(CGPoint(x: x, y: y))
+                    }
                 } label: {
                     Label {
                         Text("")
@@ -40,7 +47,7 @@ struct ContentView: View {
                     .font(.system(size: 40))
                     .foregroundColor(.white)
                 MeterView(width: 300, height: 225, value: testValue)
-                GraphView(width: 300, height: 140)
+                GraphView(width: 300, height: 140, points: graphPoints)
                 Text("GPS: 42.040919,-74.117995")
                     .font(.system(size: 20))
                     .foregroundColor(.white)
