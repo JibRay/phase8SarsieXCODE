@@ -24,6 +24,8 @@ struct GraphView: View {
         Canvas { context, size in
             var path = Path()
             var y: CGFloat
+            
+            // Draw horizontal grid lines.
             for i in 0...2 {
                 y = (CGFloat(i + 1) * height!) / 4
                 path.move(to: CGPoint(x: 0.0, y: y))
@@ -38,6 +40,7 @@ struct GraphView: View {
             context.stroke(path, with: .color(.red),
                            style: StrokeStyle(lineWidth: 2))
 
+            // If there are data, plot the points.
             if !points.isEmpty {
                 path = Path()
                 for pathPoint in points {
@@ -53,7 +56,7 @@ struct GraphView: View {
             }
         }
         .frame(width: width, height: height)
-        .background(Color.white)
+        .background(Color(red: 0.8, green: 0.8, blue: 0.8))
     }
     
     // Scale the input points to fit the canvas. Range of x and y

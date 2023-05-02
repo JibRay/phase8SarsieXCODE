@@ -5,6 +5,8 @@ See the License.txt file for this sample’s licensing information.
 import AVFoundation
 import SwiftUI
 import os.log
+import CoreLocation
+import CoreLocationUI
 
 final class DataModel: ObservableObject {
     let camera = Camera()
@@ -139,4 +141,45 @@ fileprivate extension Image.Orientation {
     }
 }
 
-fileprivate let logger = Logger(subsystem: "com.apple.swiftplaygroundscontent.capturingphotos", category: "DataModel")
+class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
+    let manager = CLLocationManager()
+    @Published var authorisationStatus: CLAuthorizationStatus = .notDetermined
+
+    @Published var location: CLLocationCoordinate2D?
+
+    override init() {
+        super.init()
+        self.manager.delegate = self
+        self.manager.requestWhenInUseAuthorization()
+        self.manager.startUpdatingLocation()
+    }
+
+    public func requestAuthorisation(always: Bool = false) {
+        if always {
+            self.manager.requestAlwaysAuthorization()
+        } else {
+            self.manager.requestWhenInUseAuthorization()
+        }
+    }
+
+    func requestLocation() {
+        manager.requestLocation()
+    }
+}
+
+extension LocationManager {
+
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        self.authorisationStatus = status
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        return
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        return
+    }
+}
+
+fileprivate let logger = Logger(subsystem: "com.apple.swiftplaygroundscontent.sarsie", category: "DataModel")

@@ -47,13 +47,16 @@ struct ContentView: View {
                     .font(.system(size: 40))
                     .foregroundColor(.white)
                 MeterView(width: 300, height: 225, value: testValue)
-                GraphView(width: 300, height: 140, points: graphPoints)
+                GraphView(width: 390, height: 220, points: graphPoints)
+                TimeAndLocationView()
+                /*
                 Text("GPS: 42.040919,-74.117995")
                     .font(.system(size: 20))
                     .foregroundColor(.white)
                 Text("3/30/2023 3:30:24 PM EDT")
                     .font(.system(size: 20))
                     .foregroundColor(.white)
+                 */
                 Spacer()
                 // Log TextField & ViewfinderView are used just for
                 // testing.
