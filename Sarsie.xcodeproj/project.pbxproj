@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C7A499029FFE64200FC6D70 /* TimeAndLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7A498F29FFE64200FC6D70 /* TimeAndLocationView.swift */; };
+		0C7A49922A069FE800FC6D70 /* VirusTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7A49912A069FE800FC6D70 /* VirusTest.swift */; };
 		0C7F663229CD04360052DEB9 /* SarsieApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7F663129CD04360052DEB9 /* SarsieApp.swift */; };
 		0C7F663429CD04360052DEB9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7F663329CD04360052DEB9 /* ContentView.swift */; };
 		0C7F663629CD04370052DEB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C7F663529CD04370052DEB9 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		0C4AD48929F062AD0073D219 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0C7A498F29FFE64200FC6D70 /* TimeAndLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAndLocationView.swift; sourceTree = "<group>"; };
+		0C7A49912A069FE800FC6D70 /* VirusTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirusTest.swift; sourceTree = "<group>"; };
 		0C7F662E29CD04360052DEB9 /* Sarsie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sarsie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C7F663129CD04360052DEB9 /* SarsieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SarsieApp.swift; sourceTree = "<group>"; };
 		0C7F663329CD04360052DEB9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				0CFD08BE29F818CC00EF99FF /* MeterView.swift */,
 				0C8858E529F98CD3007B8BF9 /* GraphView.swift */,
 				0C7A498F29FFE64200FC6D70 /* TimeAndLocationView.swift */,
+				0C7A49912A069FE800FC6D70 /* VirusTest.swift */,
 			);
 			path = Sarsie;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				0C7F663229CD04360052DEB9 /* SarsieApp.swift in Sources */,
 				0CD3CBF429E1C91100436D6E /* ViewfinderView.swift in Sources */,
 				0CD3CBF829E1C91100436D6E /* PhotoItemView.swift in Sources */,
+				0C7A49922A069FE800FC6D70 /* VirusTest.swift in Sources */,
 				0CD3CBF129E1C91100436D6E /* PhotoView.swift in Sources */,
 				0CD3CBF729E1C91100436D6E /* PhotoCollection.swift in Sources */,
 				0C8858E629F98CD3007B8BF9 /* GraphView.swift in Sources */,
