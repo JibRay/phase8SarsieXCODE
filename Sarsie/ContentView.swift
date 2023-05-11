@@ -7,10 +7,13 @@
 
 import SwiftUI
 
+var  shift = 0.0 // start offscreen left
+
 struct ContentView: View {
     @State var testValue = 0.0
     @StateObject private var model = DataModel()
     @State var graphPoints = [CGPoint]()
+    @State var virusTest = VirusTest()
 
     var body: some View {
         ZStack {
@@ -19,9 +22,9 @@ struct ContentView: View {
                 Button {
                     model.camera.takePhoto()
                     
-                    //testValue = virusTest(pixelBuffer: model.camera.pixelBuffer!)
-                    testValue += 0.1
-                    testValue = testValue > 1.0 ? 0.0 : testValue
+                    testValue = virusTest.test(pixelBuffer: model.camera.pixelBuffer!)
+                    //testValue += 0.1
+                    //testValue = testValue > 1.0 ? 0.0 : testValue
                     
                     graphPoints = [CGPoint]()
                     for i in  0..<100 {

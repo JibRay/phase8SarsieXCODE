@@ -38,7 +38,7 @@ struct GraphView: View {
             path.move(to: CGPoint(x: 0.0, y: y))
             path.addLine(to: CGPoint(x: width!, y: y))
             context.stroke(path, with: .color(.red),
-                           style: StrokeStyle(lineWidth: 2))
+                           style: StrokeStyle(lineWidth: 5))
 
             // If there are data, plot the points.
             if !points.isEmpty {
