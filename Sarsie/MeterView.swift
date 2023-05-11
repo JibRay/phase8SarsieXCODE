@@ -21,15 +21,17 @@ struct Needle: Shape {
     }
 }
 
+// UI graphics have zero at upper left corner.
 struct MeterView: View {
-    let _width: CGFloat?
-    let _height: CGFloat?
-    let _value: Double?
+    let width: CGFloat?
+    let height: CGFloat?
+    let value: Double?
     
     let minAngle: Double = 0.2 // Radians
     let maxAngle: Double = 0.8
     let angleStep: Double?
     var pointerCenter = CGPoint(x: 0, y: 0)
+    var pointerRadius: Double?
     let offsets: [(x: Double, y: Double)] =
     [
         (-179.0, 51.0),
@@ -45,30 +47,36 @@ struct MeterView: View {
         (89.0, -164)
     ]
 
+    // width and height are over all size of the meter. value is the
+    // value displayed by the meter, 0.0 to 1.0.
     init(width: CGFloat, height: CGFloat, value: Double) {
-        _width = width
-        _height = height
-        _value = (value - 0.5) * 1.6 // Convert value to radians.
+        self.width = width
+        self.height = height
+        
+        // Convert value to -0.8 to +0.8 radians.
+        //self.value = (value - 0.5) * 1.6
+        self.value = (value - 0.5) * 2.0
         angleStep = (maxAngle - minAngle) / 5.0001
-        pointerCenter.x = 0.5 * _width!
-        pointerCenter.y = 0.3 * _height!
+        self.pointerCenter.x = 0.5 * width
+        self.pointerCenter.y = 0.8 * height
+        self.pointerRadius = 0.65 * height
     }
     
     var body: some View {
-        let origin = CGPoint(x: pointerCenter.x - 15, y: toTop(pointerCenter.y) + 15)
+        //let origin = CGPoint(x: pointerCenter.x - 15, y: pointerCenter.y + 15)
+        let origin = CGPoint(x: pointerCenter.x - 15, y: pointerCenter.y - 15)
         let originSize = CGSize(width: 30, height: 30)
         let pointerPivotBox = CGRect(origin: origin, size: originSize)
         
         let pointerPivot = Circle().path(in: pointerPivotBox)
-        let pointerRadius = 0.65 * _height!
-        let pointerColor = _value! > 0.0 ? Color.red : Color.green
-        let needleSize = CGSize(width: 20, height: 1.2 * pointerRadius)
-        let needleBox = CGRect(origin: CGPoint(x: pointerCenter.x - 10, y: 30), size: needleSize)
-
-        let needle = Needle().path(in: needleBox)
-        let rotatedNeedle = rotatePath(needle, by: _value!)
+        let pointerColor = value! > 0.0 ? Color.red : Color.green
         
-        let meterDots = meterDots(center: pointerCenter, radius: pointerRadius)
+        let needleSize = CGSize(width: 20, height: 1.2 * pointerRadius!)
+        let needleBox = CGRect(origin: CGPoint(x: pointerCenter.x - 10, y: 30), size: needleSize)
+        let needle = Needle().path(in: needleBox)
+        let rotatedNeedle = rotateNeedle(needle, by: value!, radius: pointerRadius!)
+        
+        let meterDots = meterDots(center: pointerCenter, radius: pointerRadius! + 12.0)
         
         
         Canvas {
@@ -79,13 +87,13 @@ struct MeterView: View {
             }
             context.fill(rotatedNeedle, with: .color(pointerColor))
         }
-        .frame(width: _width, height: _height)
+        .frame(width: width, height: height)
         //.border(Color.blue)
     }
     
     // Move Y zero from the bottom of a rectangle to the top.
     private func toTop(_ y: CGFloat) -> CGFloat {
-        return _height! - y
+        return height! - y
     }
     
     // Range of angle is -0.8 to +0.8.
@@ -98,50 +106,31 @@ struct MeterView: View {
         return offsets[index]
     }
 
-    private func rotatePath(_ path: Path, by angle: Double) -> Path {
-        let offset = offset(angle)
+    // Rotate needle to a new angle. Then translate it so needle point
+    // is on the correct arc.
+    private func rotateNeedle(_ path: Path, by angle: Double, radius: Double) -> Path {
+        let radiusToPivot = sqrt(pow(pointerCenter.x, 2.0) + pow(pointerCenter.y, 2.0))
+        let angleToNewPivot = atan(pointerCenter.y / pointerCenter.x) + angle
+        let newPivotX = radiusToPivot * cos(angleToNewPivot)
+        let newPivotY = radiusToPivot * sin(angleToNewPivot)
+        let dX = pointerCenter.x - newPivotX
+        let dY = pointerCenter.y - newPivotY
+        
         let transform = CGAffineTransform(rotationAngle: angle)
-            .translatedBy(x: offset.x, y: offset.y)
-        return path.applying(transform)
+            //.translatedBy(x: dX, y: dY)
+            //.translatedBy(x: 0, y: 0)
+        //var newPath = path.applying(transform)
+        //path.offsetBy(dx: dX, dy: dY)
+        return path.applying(transform).offsetBy(dx: dX, dy: dY)
+        //return path.applying(transform)
     }
-    
-    /*
-    private func rotatePath(_ path: Path, by angle: Double) -> Path {
-        let px = pointerCenter.x
-        let py = toTop(pointerCenter.y)
-        
-        // Compute radius to pointer center (pivot).
-        let r = sqrt((px * px) + (py * py))
-        
-        // Compute angle to pointer center.
-        let a0 = atan(py / px)
-        
-        // Compute angle to rotated pointer center.
-        let a1 = a0 + angle
-        
-        // Compute position of rotated pointer center.
-        let x = r * cos(a1)
-        let y = r * sin(a1)
-        
-        // Compute translation to move pointer back to pivot.
-        let dx = x - px
-        let dy = y - py
-        //let dx = px - x
-        //let dy = py - y
-
-        let transform = CGAffineTransform(rotationAngle: angle)
-            //.translatedBy(x: dx, y: dy)
-            .translatedBy(x: -180, y: 53)
-        return path.applying(transform)
-    }
-     */
     
     private func meterDots(center: CGPoint, radius: Double) -> [Path] {
         var dots = [Path]()
         
         for k in stride(from: minAngle, through: maxAngle, by: angleStep!) {
             let x = center.x + (radius * cos(k * Double.pi)) - 7.5
-            let y = toTop(center.y + (radius * sin(k * Double.pi)))
+            let y = center.y - (radius * sin(k * Double.pi))
             dots.append(Circle().path(in: CGRect(x: x, y: y, width: 15, height: 15)))
         }
         return dots
