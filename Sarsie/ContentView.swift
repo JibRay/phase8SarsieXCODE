@@ -17,10 +17,12 @@ struct ContentView: View {
             Color(.black).ignoresSafeArea(.all)
             VStack {
                 Button {
-                    //model.camera.takePhoto()
+                    model.camera.takePhoto()
+                    
                     //testValue = virusTest(pixelBuffer: model.camera.pixelBuffer!)
                     testValue += 0.1
                     testValue = testValue > 1.0 ? 0.0 : testValue
+                    
                     graphPoints = [CGPoint]()
                     for i in  0..<100 {
                         let x = Double(i) / 100.0
@@ -45,7 +47,6 @@ struct ContentView: View {
                     .font(.system(size: 40))
                     .foregroundColor(.white)
                 MeterView(width: 300, height: 225, value: testValue)
-                    .background(.blue)
                 GraphView(width: 390, height: 220, points: graphPoints)
                 TimeAndLocationView()
                 Spacer()

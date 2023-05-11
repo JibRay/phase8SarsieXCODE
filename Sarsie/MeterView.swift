@@ -32,20 +32,6 @@ struct MeterView: View {
     let angleStep: Double?
     var pointerCenter = CGPoint(x: 0, y: 0)
     var pointerRadius: Double?
-    let offsets: [(x: Double, y: Double)] =
-    [
-        (-179.0, 51.0),
-        (-140.0, 53.0),
-        (-102.0, 47.0),
-        (-66.0, 37.0),
-        (-31.0, 22.0),
-        (0.0, 0.0),
-        (28.0, -27.0),
-        (52.0, -57.0),
-        (70.0, -90.0),
-        (82.0, -127.0),
-        (89.0, -164)
-    ]
 
     // width and height are over all size of the meter. value is the
     // value displayed by the meter, 0.0 to 1.0.
@@ -54,7 +40,6 @@ struct MeterView: View {
         self.height = height
         
         // Convert value to -0.8 to +0.8 radians.
-        //self.value = (value - 0.5) * 1.6
         self.value = (value - 0.5) * 2.0
         angleStep = (maxAngle - minAngle) / 5.0001
         self.pointerCenter.x = 0.5 * width
@@ -63,7 +48,6 @@ struct MeterView: View {
     }
     
     var body: some View {
-        //let origin = CGPoint(x: pointerCenter.x - 15, y: pointerCenter.y + 15)
         let origin = CGPoint(x: pointerCenter.x - 15, y: pointerCenter.y - 15)
         let originSize = CGSize(width: 30, height: 30)
         let pointerPivotBox = CGRect(origin: origin, size: originSize)
@@ -96,19 +80,12 @@ struct MeterView: View {
         return height! - y
     }
     
-    // Range of angle is -0.8 to +0.8.
-    // FIXME: Add interpolation.
-    func offset(_ angle: Double) -> (x: Double, y: Double) {
-        var index: Int = Int(0.5 + ((angle + 0.8) * 6.25))
-        index = index < 0 ? 0 : index
-        index = index > 10 ? 10 : index
-        
-        return offsets[index]
-    }
-
     // Rotate needle to a new angle. Then translate it so needle point
     // is on the correct arc.
     private func rotateNeedle(_ path: Path, by angle: Double, radius: Double) -> Path {
+        
+        // Calculate translation needed after rotating the needle. Rotation
+        // anchor is the upper left corner of this view.
         let radiusToPivot = sqrt(pow(pointerCenter.x, 2.0) + pow(pointerCenter.y, 2.0))
         let angleToNewPivot = atan(pointerCenter.y / pointerCenter.x) + angle
         let newPivotX = radiusToPivot * cos(angleToNewPivot)
@@ -117,12 +94,7 @@ struct MeterView: View {
         let dY = pointerCenter.y - newPivotY
         
         let transform = CGAffineTransform(rotationAngle: angle)
-            //.translatedBy(x: dX, y: dY)
-            //.translatedBy(x: 0, y: 0)
-        //var newPath = path.applying(transform)
-        //path.offsetBy(dx: dX, dy: dY)
         return path.applying(transform).offsetBy(dx: dX, dy: dY)
-        //return path.applying(transform)
     }
     
     private func meterDots(center: CGPoint, radius: Double) -> [Path] {
