@@ -22,16 +22,21 @@ struct ContentView: View {
                 Button {
                     model.camera.takePhoto()
                     
-                    testValue = virusTest.test(pixelBuffer: model.camera.pixelBuffer!)
-                    //testValue += 0.1
-                    //testValue = testValue > 1.0 ? 0.0 : testValue
+                    let result = virusTest.test(pixelBuffer: model.camera.pixelBuffer!)
+                    testValue = result.value.y
+                    if result.index == 0 {
+                        graphPoints = [CGPoint]()
+                    }
+                    graphPoints.append(result.value)
                     
-                    graphPoints = [CGPoint]()
-                    for i in  0..<100 {
-                        let x = Double(i) / 100.0
-                        let y = 0.5 + 0.4 * cos(Double.pi + ((Double(i) * 2.0 * Double.pi) / 100.0))
+                    /*
+                    for i in  0..<72 {
+                        let x = Double(i) / 72.0
+                        let y = 0.5 + 0.4 * cos(Double.pi + ((Double(i) * 2.0 * Double.pi) / 72.0))
                         graphPoints.append(CGPoint(x: x, y: y))
                     }
+                     */
+                    
                 } label: {
                     Label {
                         Text("")

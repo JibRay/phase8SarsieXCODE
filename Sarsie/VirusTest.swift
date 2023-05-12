@@ -29,6 +29,13 @@ class DemoData {
         1002614089, 1002508276, 1002414499, 1002220331, 1002418568,
         1002202776, 1002209872
     ]
+    
+    var size: Int {
+        get {
+            return values.count
+        }
+    }
+    
     init() {
         self.index = 0
         
@@ -43,11 +50,13 @@ class DemoData {
         offset = (scale! * min) - 0.05
     }
     
-    func getNextValue() -> Double {
-        let value = (values[index] * scale!) - offset!
+    func getNextValue() -> (value: CGPoint, index: Int) {
+        let returnedIndex = index
+        let x = Double(index) / Double(values.count)
+        let y = (values[self.index] * scale!) - offset!
         self.index += 1
-        index = index >= values.count ? 0 : index
-        return value
+        self.index = self.index >= values.count ? 0 : self.index
+        return (CGPoint(x: x, y: y), returnedIndex)
     }
 }
 
@@ -58,7 +67,7 @@ class VirusTest {
         self.demoData = DemoData()
     }
     
-    func test(pixelBuffer: CVImageBuffer) -> Double {
+    func test(pixelBuffer: CVImageBuffer) -> (value: CGPoint, index: Int) {
         /*
          let width = CVPixelBufferGetWidth(pixelBuffer)
          let height = CVPixelBufferGetHeight(pixelBuffer)

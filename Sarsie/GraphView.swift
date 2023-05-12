@@ -12,8 +12,7 @@ struct GraphView: View {
     let height: CGFloat?
     var points = [CGPoint]()
     
-    // Size of points must be <= 100. The X and Y in points ranges
-    // from 0.0 to 1.0.
+    // The X and Y in points ranges from 0.0 to 1.0.
     init(width: CGFloat, height: CGFloat, points: [CGPoint]) {
         self.width = width
         self.height = height
@@ -33,6 +32,8 @@ struct GraphView: View {
             }
             context.stroke(path, with: .color(.blue),
                            style: StrokeStyle(lineWidth: 2))
+            
+            // Draw the horizontal center line.
             path = Path()
             y = height! / 2
             path.move(to: CGPoint(x: 0.0, y: y))
@@ -43,6 +44,7 @@ struct GraphView: View {
             // If there are data, plot the points.
             if !points.isEmpty {
                 path = Path()
+                // Build the path from the points array.
                 for pathPoint in points {
                     if path.isEmpty {
                         path.move(to: pathPoint)
