@@ -14,28 +14,28 @@
             filePath = "Sarsie/DataModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
             landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "6E16F052-F500-403D-B037-20360F0DA6B1 - a17042b03648db03"
+                  uuid = "6E16F052-F500-403D-B037-20360F0DA6B1 - 2d735dfe9fc4b271"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Sarsie.LocationManager.locationManager(_: __C.CLLocationManager, didUpdateLocations: Swift.Array&lt;__C.CLLocation&gt;) -&gt; ()"
+                  symbolName = "Sarsie.LocationManager.locationManager(_: __C.CLLocationManager, didFailWithError: Swift.Error) -&gt; ()"
                   moduleName = "Sarsie"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jib/Documents/projects/cs/phase8/Sarsie/Sarsie/DataModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "182"
-                  endingLineNumber = "182"
+                  startingLineNumber = "183"
+                  endingLineNumber = "183"
                   offsetFromSymbolStart = "28">
                </Location>
                <Location
-                  uuid = "6E16F052-F500-403D-B037-20360F0DA6B1 - a17042b03648dbc5"
+                  uuid = "6E16F052-F500-403D-B037-20360F0DA6B1 - a17042b03648daec"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -45,12 +45,12 @@
                   urlString = "file:///Users/jib/Documents/projects/cs/phase8/Sarsie/Sarsie/DataModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "176"
-                  endingLineNumber = "176"
+                  startingLineNumber = "183"
+                  endingLineNumber = "183"
                   offsetFromSymbolStart = "28">
                </Location>
                <Location
-                  uuid = "6E16F052-F500-403D-B037-20360F0DA6B1 - a17042b03648db87"
+                  uuid = "6E16F052-F500-403D-B037-20360F0DA6B1 - a17042b03648da49"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -60,8 +60,23 @@
                   urlString = "file:///Users/jib/Documents/projects/cs/phase8/Sarsie/Sarsie/DataModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "178"
-                  endingLineNumber = "178"
+                  startingLineNumber = "188"
+                  endingLineNumber = "188"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "6E16F052-F500-403D-B037-20360F0DA6B1 - a17042b03648da0b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Sarsie.LocationManager.locationManager(_: __C.CLLocationManager, didUpdateLocations: Swift.Array&lt;__C.CLLocation&gt;) -&gt; ()"
+                  moduleName = "Sarsie"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jib/Documents/projects/cs/phase8/Sarsie/Sarsie/DataModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "190"
+                  endingLineNumber = "190"
                   offsetFromSymbolStart = "28">
                </Location>
             </Locations>

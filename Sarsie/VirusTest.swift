@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+
+// This class produces dummy data for testing.
 class DemoData {
     let scale: Double?
     let offset: Double?
@@ -42,6 +44,7 @@ class DemoData {
     init() {
         self.index = 0
         
+        // Scan the data to compute the scale factor and offset.
         var min = 1e14
         var max = 0.0
         for value in values {
@@ -70,15 +73,20 @@ class VirusTest {
         self.demoData = DemoData()
     }
     
-    func test(pixelBuffer: CVImageBuffer) -> (value: CGPoint, index: Int) {
-        /*
-         let width = CVPixelBufferGetWidth(pixelBuffer)
-         let height = CVPixelBufferGetHeight(pixelBuffer)
-         let planeCount = CVPixelBufferGetPlaneCount(pixelBuffer)
-         let bytesPerRow = CVPixelBufferGetBytesPerRow(pixelBuffer)
-         let pixelFormat = CVPixelBufferGetPixelFormatType(pixelBuffer)
-         */
+    // Run a virus test by analyzing the image passed in imageData.
+    func test(imageData: Data) -> (value: CGPoint, index: Int) {
+        // imageData contains the image just captured by pressing the button.
+        //
+        // The returned value is a tuple: (value, index).
+        // Value is a CGPoint where x is the X position in the graph and y is
+        // the graph Y value. Both have a range of 0.0 to < 1.0. The y value
+        // contains the test result where < 0.5 is negative and 0.5 or above
+        // is positive.
+        //
+        // Index is just a counter and contains the number of tests since the
+        // app started.
         
-        return demoData.getNextValue()
+        let demoValue = demoData.getNextValue() // Using demo values for now.
+        return demoValue
     }
 }

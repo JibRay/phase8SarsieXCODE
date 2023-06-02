@@ -13,7 +13,7 @@ struct ContentView: View {
     @State var testValue = 0.0
     @StateObject private var model = DataModel()
     @State var graphPoints = [CGPoint]()
-    @State var virusTest = VirusTest()
+    //@State var virusTest = VirusTest()
 
     var body: some View {
         ZStack {
@@ -21,23 +21,8 @@ struct ContentView: View {
             VStack {
                 Button {
                     model.camera.takePhoto()
-                    
-                    let result = virusTest.test(pixelBuffer: model.camera.pixelBuffer!)
-                    testValue = result.value.y
-                    if result.index == 0 {
-                        graphPoints = [CGPoint]()
-                    }
-                    graphPoints.append(result.value)
-                    
-                    /*
-                    for i in  0..<72 {
-                        let x = Double(i) / 72.0
-                        let y = 0.5 + 0.4 * cos(Double.pi + ((Double(i) * 2.0 * Double.pi) / 72.0))
-                        graphPoints.append(CGPoint(x: x, y: y))
-                    }
-                     */
-                    
-                } label: {
+                }
+                label: {
                     Label {
                         Text("")
                     } icon: {
@@ -54,8 +39,8 @@ struct ContentView: View {
                 Text("SARSIE")
                     .font(.system(size: 40))
                     .foregroundColor(.white)
-                MeterView(width: 300, height: 225, value: testValue)
-                GraphView(width: 390, height: 220, points: graphPoints)
+                MeterView(width: 300, height: 225, value: model.testResult.value.y)
+                GraphView(width: 390, height: 220, points: model.graphPoints)
                 TimeAndLocationView()
                 Spacer()
                 // For release set size to 4 x 3. For testing
@@ -65,6 +50,7 @@ struct ContentView: View {
                     .frame(width: 40, height: 30)
                     .task {
                         await model.camera.start()
+                        await model.loadThumbnail()
                     }
             }
         }

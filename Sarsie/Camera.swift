@@ -353,7 +353,7 @@ class Camera: NSObject {
 }
 
 extension Camera: AVCapturePhotoCaptureDelegate {
-    
+    // Jib: This gets called after button push.
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         
         if let error = error {
@@ -366,7 +366,7 @@ extension Camera: AVCapturePhotoCaptureDelegate {
 }
 
 extension Camera: AVCaptureVideoDataOutputSampleBufferDelegate {
-    
+    // Jib: This get called frequently, to update view finder?
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         //guard let pixelBuffer = sampleBuffer.imageBuffer else { return }
         // FIXME: Should this be guarded?

@@ -11,6 +11,9 @@ import CoreLocationUI
 final class DataModel: ObservableObject {
     let camera = Camera()
     let photoCollection = PhotoCollection(smartAlbum: .smartAlbumUserLibrary)
+    let virusTest = VirusTest()
+    var testResult: (value: CGPoint, index: Int)
+    var graphPoints = [CGPoint]()
     
     @Published var viewfinderImage: Image?
     @Published var thumbnailImage: Image?
@@ -18,6 +21,8 @@ final class DataModel: ObservableObject {
     var isPhotosLoaded = false
     
     init() {
+        testResult.value = CGPoint(x: 0.0, y: 0.0)
+        testResult.index = 0
         Task {
             await handleCameraPreviews()
         }
@@ -47,6 +52,13 @@ final class DataModel: ObservableObject {
                 thumbnailImage = photoData.thumbnailImage
             }
             savePhoto(imageData: photoData.imageData)
+            
+            // Pass the image to virusTest for analysis.
+            testResult = virusTest.test(imageData: photoData.imageData)
+            if testResult.index == 0 {
+                graphPoints = [CGPoint]()
+            }
+            graphPoints.append(testResult.value)
         }
     }
     
