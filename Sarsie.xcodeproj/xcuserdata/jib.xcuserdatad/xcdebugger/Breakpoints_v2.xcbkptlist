@@ -14,70 +14,88 @@
             filePath = "Sarsie/DataModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
-            landmarkName = "locationManager(_:didUpdateLocations:)"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
+            landmarkName = "LocationManager"
+            landmarkType = "21">
+            <Locations>
+               <Location
+                  uuid = "6E16F052-F500-403D-B037-20360F0DA6B1 - a17042b03648d531"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Sarsie.LocationManager.locationManager(_: __C.CLLocationManager, didUpdateLocations: Swift.Array&lt;__C.CLLocation&gt;) -&gt; ()"
+                  moduleName = "Sarsie"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jib/Documents/projects/cs/phase8/Sarsie/Sarsie/DataModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "196"
+                  endingLineNumber = "196"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "6E16F052-F500-403D-B037-20360F0DA6B1 - a17042b03648d512"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Sarsie.LocationManager.locationManager(_: __C.CLLocationManager, didUpdateLocations: Swift.Array&lt;__C.CLLocation&gt;) -&gt; ()"
+                  moduleName = "Sarsie"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jib/Documents/projects/cs/phase8/Sarsie/Sarsie/DataModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9668A634-7C69-46A2-9FEB-C0C1B7D3B550"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sarsie/VirusTest.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "test(imageData:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "6E16F052-F500-403D-B037-20360F0DA6B1 - 2d735dfe9fc4b271"
+                  uuid = "9668A634-7C69-46A2-9FEB-C0C1B7D3B550 - 4cd7a7a0d11dcda5"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Sarsie.LocationManager.locationManager(_: __C.CLLocationManager, didFailWithError: Swift.Error) -&gt; ()"
+                  symbolName = "Sarsie.VirusTest.test(imageData: Foundation.Data) -&gt; (value: __C.CGPoint, index: Swift.Int)"
                   moduleName = "Sarsie"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jib/Documents/projects/cs/phase8/Sarsie/Sarsie/DataModel.swift"
+                  urlString = "file:///Users/jib/Documents/projects/cs/phase8/Sarsie/Sarsie/VirusTest.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "183"
-                  endingLineNumber = "183"
-                  offsetFromSymbolStart = "28">
+                  startingLineNumber = "97"
+                  endingLineNumber = "97"
+                  offsetFromSymbolStart = "544">
                </Location>
                <Location
-                  uuid = "6E16F052-F500-403D-B037-20360F0DA6B1 - a17042b03648daec"
+                  uuid = "9668A634-7C69-46A2-9FEB-C0C1B7D3B550 - 4cd7a7a0d11dcda5"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Sarsie.LocationManager.locationManager(_: __C.CLLocationManager, didUpdateLocations: Swift.Array&lt;__C.CLLocation&gt;) -&gt; ()"
+                  symbolName = "Sarsie.VirusTest.test(imageData: Foundation.Data) -&gt; (value: __C.CGPoint, index: Swift.Int)"
                   moduleName = "Sarsie"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jib/Documents/projects/cs/phase8/Sarsie/Sarsie/DataModel.swift"
+                  urlString = "file:///Users/jib/Documents/projects/cs/phase8/Sarsie/Sarsie/VirusTest.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "183"
-                  endingLineNumber = "183"
-                  offsetFromSymbolStart = "28">
-               </Location>
-               <Location
-                  uuid = "6E16F052-F500-403D-B037-20360F0DA6B1 - a17042b03648da49"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Sarsie.LocationManager.locationManager(_: __C.CLLocationManager, didUpdateLocations: Swift.Array&lt;__C.CLLocation&gt;) -&gt; ()"
-                  moduleName = "Sarsie"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jib/Documents/projects/cs/phase8/Sarsie/Sarsie/DataModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "188"
-                  endingLineNumber = "188"
-                  offsetFromSymbolStart = "28">
-               </Location>
-               <Location
-                  uuid = "6E16F052-F500-403D-B037-20360F0DA6B1 - a17042b03648da0b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Sarsie.LocationManager.locationManager(_: __C.CLLocationManager, didUpdateLocations: Swift.Array&lt;__C.CLLocation&gt;) -&gt; ()"
-                  moduleName = "Sarsie"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jib/Documents/projects/cs/phase8/Sarsie/Sarsie/DataModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "190"
-                  endingLineNumber = "190"
-                  offsetFromSymbolStart = "28">
+                  startingLineNumber = "97"
+                  endingLineNumber = "97"
+                  offsetFromSymbolStart = "464">
                </Location>
             </Locations>
          </BreakpointContent>

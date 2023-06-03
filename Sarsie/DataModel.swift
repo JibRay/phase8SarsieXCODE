@@ -12,6 +12,9 @@ final class DataModel: ObservableObject {
     let camera = Camera()
     let photoCollection = PhotoCollection(smartAlbum: .smartAlbumUserLibrary)
     let virusTest = VirusTest()
+    let resultsPerGraph = 10
+    let virusThreshold = 200e6
+    var graphX = 0
     var testResult: (value: CGPoint, index: Int)
     var graphPoints = [CGPoint]()
     
@@ -119,6 +122,10 @@ final class DataModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    func updateTestResults(testResult: Double) {
+        
     }
 }
 

@@ -86,6 +86,14 @@ class VirusTest {
         // Index is just a counter and contains the number of tests since the
         // app started.
         
+        var sum = 0
+        for index in stride(from: imageData.startIndex, to: imageData.endIndex, by: 1) {
+            sum += Int(imageData[index])
+        }
+        
+        // At this point you can test against your threshold. Set a break point at
+        // the line below to see the sum.
+        
         let demoValue = demoData.getNextValue() // Using demo values for now.
         return demoValue
     }

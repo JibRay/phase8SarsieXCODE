@@ -12,6 +12,7 @@ struct GraphView: View {
     let height: CGFloat?
     var points = [CGPoint]()
     
+    // width and height are display size in pixels.
     // The X and Y in points ranges from 0.0 to 1.0.
     init(width: CGFloat, height: CGFloat, points: [CGPoint]) {
         self.width = width
