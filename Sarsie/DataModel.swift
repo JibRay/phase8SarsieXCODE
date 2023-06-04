@@ -12,10 +12,22 @@ final class DataModel: ObservableObject {
     let camera = Camera()
     let photoCollection = PhotoCollection(smartAlbum: .smartAlbumUserLibrary)
     let virusTest = VirusTest()
+    
+    // The next three constants must be set to control the threshold between
+    // a negative or positive result and how the graph displays the result.
+    
+    // The positive virus threshold.
+    let virusThreshold = 125e6
+    
+    // The maximum mumber of test results shown on the graph.
     let resultsPerGraph = 10
-    let virusThreshold = 200e6
-    var graphX = 0
-    var testResult: (value: CGPoint, index: Int)
+    
+    // The graph vertical scale factor. This scales the raw sum to a range
+    // of 0.0 to 1.0.
+    let graphScale = 1.2e-9
+    
+    var testResult = 0
+    var scaledTestResult = 0.0
     var graphPoints = [CGPoint]()
     
     @Published var viewfinderImage: Image?
@@ -23,9 +35,11 @@ final class DataModel: ObservableObject {
     
     var isPhotosLoaded = false
     
+    private var graphYoffset = 0.0
+    private var resultCount = 0
+
     init() {
-        testResult.value = CGPoint(x: 0.0, y: 0.0)
-        testResult.index = 0
+        graphYoffset = 0.5 - (graphScale * virusThreshold)
         Task {
             await handleCameraPreviews()
         }
@@ -58,10 +72,7 @@ final class DataModel: ObservableObject {
             
             // Pass the image to virusTest for analysis.
             testResult = virusTest.test(imageData: photoData.imageData)
-            if testResult.index == 0 {
-                graphPoints = [CGPoint]()
-            }
-            graphPoints.append(testResult.value)
+            updateTestResults(testResult: testResult)
         }
     }
     
@@ -124,8 +135,17 @@ final class DataModel: ObservableObject {
         }
     }
     
-    func updateTestResults(testResult: Double) {
-        
+    func updateTestResults(testResult: Int) {
+        resultCount += 1
+        scaledTestResult = (Double(testResult) * graphScale) + graphYoffset
+        if (graphPoints.count >= resultsPerGraph - 1) {
+            for i in stride(from: graphPoints.count - 1, to: 0, by: -1) {
+                graphPoints[i].x = graphPoints[i-1].x
+            }
+            graphPoints.removeFirst()
+        }
+        let x = Double(graphPoints.count) / Double(resultsPerGraph)
+        graphPoints.append(CGPoint(x: x, y: scaledTestResult))
     }
 }
 

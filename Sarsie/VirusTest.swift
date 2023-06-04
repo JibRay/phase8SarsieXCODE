@@ -74,27 +74,11 @@ class VirusTest {
     }
     
     // Run a virus test by analyzing the image passed in imageData.
-    func test(imageData: Data) -> (value: CGPoint, index: Int) {
-        // imageData contains the image just captured by pressing the button.
-        //
-        // The returned value is a tuple: (value, index).
-        // Value is a CGPoint where x is the X position in the graph and y is
-        // the graph Y value. Both have a range of 0.0 to < 1.0. The y value
-        // contains the test result where < 0.5 is negative and 0.5 or above
-        // is positive.
-        //
-        // Index is just a counter and contains the number of tests since the
-        // app started.
-        
+    func test(imageData: Data) -> Int {
         var sum = 0
         for index in stride(from: imageData.startIndex, to: imageData.endIndex, by: 1) {
             sum += Int(imageData[index])
         }
-        
-        // At this point you can test against your threshold. Set a break point at
-        // the line below to see the sum.
-        
-        let demoValue = demoData.getNextValue() // Using demo values for now.
-        return demoValue
+        return sum
     }
 }

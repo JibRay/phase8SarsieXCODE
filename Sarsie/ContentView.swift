@@ -39,7 +39,7 @@ struct ContentView: View {
                 Text("SARSIE")
                     .font(.system(size: 40))
                     .foregroundColor(.white)
-                MeterView(width: 300, height: 225, value: model.testResult.value.y)
+                MeterView(width: 300, height: 225, value: model.scaledTestResult)
                 GraphView(width: 390, height: 220, points: model.graphPoints)
                 TimeAndLocationView()
                 Spacer()
