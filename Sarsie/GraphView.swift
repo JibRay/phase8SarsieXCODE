@@ -63,7 +63,7 @@ struct GraphView: View {
     }
     
     // Scale the input points to fit the canvas. Range of x and y
-    // in points must be 0.0 to 1.0.
+    // in points must be 0.0 to < 1.0.
     func scalePoints(_ points: [CGPoint]) -> [CGPoint] {
         var scaledPoints = [CGPoint]()
         

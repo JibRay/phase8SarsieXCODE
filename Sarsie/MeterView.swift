@@ -11,6 +11,7 @@ struct Needle: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         
+        // Draw the needle.
         path.move(to: CGPoint(x: rect.midX + 5, y: rect.minY))
         path.addLine(to: CGPoint(x: rect.midX - 5, y: rect.minY))
         path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
@@ -39,7 +40,8 @@ struct MeterView: View {
         self.width = width
         self.height = height
         
-        // Convert value to -0.8 to +0.8 radians.
+        // Convert value to angle in radians. Note that from here on
+        // zero is the needle at half scale, pointing straight up.
         self.value = (value - 0.5) * 2.0
         angleStep = (maxAngle - minAngle) / 5.0001
         self.pointerCenter.x = 0.5 * width
@@ -48,22 +50,29 @@ struct MeterView: View {
     }
     
     var body: some View {
+        // Needle is a tapered quadralateral with a circle at its pivot.
         let origin = CGPoint(x: pointerCenter.x - 15, y: pointerCenter.y - 15)
-        let originSize = CGSize(width: 30, height: 30)
-        let pointerPivotBox = CGRect(origin: origin, size: originSize)
-        
+        let pointerPivotBox = CGRect(origin: origin, size: CGSize(width: 30, height: 30))
         let pointerPivot = Circle().path(in: pointerPivotBox)
+        
+        // Needle is red left of the mid-point and green right of the midpoint.
         let pointerColor = value! > 0.0 ? Color.red : Color.green
         
+        // Create the needle graphic.
         let needleSize = CGSize(width: 20, height: 1.2 * pointerRadius!)
         let needleBox = CGRect(origin: CGPoint(x: pointerCenter.x - 10, y: 30), size: needleSize)
         let needle = Needle().path(in: needleBox)
+        
+        // Rotate needle so its angle represents the value parameter.
         let rotatedNeedle = rotateNeedle(needle, by: value!, radius: pointerRadius!)
         
+        // Meter index marks are dots.
         let meterDots = meterDots(center: pointerCenter, radius: pointerRadius! + 12.0)
         
         
         Canvas {
+            // Draw the circle at the pointer pivot, the meter index marks
+            // (dots) and finally the needle.
             context, size in
             context.fill(pointerPivot, with: .color(pointerColor))
             for meterDot in meterDots {
@@ -72,7 +81,7 @@ struct MeterView: View {
             context.fill(rotatedNeedle, with: .color(pointerColor))
         }
         .frame(width: width, height: height)
-        //.border(Color.blue)
+        //.border(Color.blue) // For testing layout.
     }
     
     // Move Y zero from the bottom of a rectangle to the top.
@@ -97,6 +106,7 @@ struct MeterView: View {
         return path.applying(transform).offsetBy(dx: dX, dy: dY)
     }
     
+    // Create the meter index marks (dots).
     private func meterDots(center: CGPoint, radius: Double) -> [Path] {
         var dots = [Path]()
         

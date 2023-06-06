@@ -7,13 +7,10 @@
 
 import SwiftUI
 
-var  shift = 0.0 // start offscreen left
-
 struct ContentView: View {
     @State var testValue = 0.0
     @StateObject private var model = DataModel()
     @State var graphPoints = [CGPoint]()
-    //@State var virusTest = VirusTest()
 
     var body: some View {
         ZStack {
@@ -36,11 +33,22 @@ struct ContentView: View {
                         }
                     }
                 }
-                Text("SARSIE")
-                    .font(.system(size: 40))
+                HStack {
+                    Text(" SARSIE")
+                        .font(.system(size: 40))
+                        .foregroundColor(.white)
+                    Text("\u{00A9}")
+                        .font(.system(size: 25))
+                        .foregroundColor(.white)
+                }
+                MeterView(width: 300, height: 200, value: model.scaledTestResult)
+                
+                // Display test value (sum returned from VirusTest.test()).
+                Text("\(model.testResult)")
+                    .font(.system(size: 20))
                     .foregroundColor(.white)
-                MeterView(width: 300, height: 225, value: model.scaledTestResult)
-                GraphView(width: 390, height: 220, points: model.graphPoints)
+                
+                GraphView(width: 390, height: 200, points: model.graphPoints)
                 TimeAndLocationView()
                 Spacer()
                 // For release set size to 4 x 3. For testing
