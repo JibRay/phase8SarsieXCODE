@@ -17,16 +17,16 @@ final class DataModel: ObservableObject {
     // a negative or positive result and how the graph displays the result.
     
     // The positive virus threshold.
-    let virusThreshold = 125e6
+    let virusThreshold = 95.0
     
     // The maximum mumber of test results shown on the graph.
     let resultsPerGraph = 20
     
-    // The graph vertical scale factor. This scales the raw sum to a range
+    // The graph vertical scale factor. This scales the value to a range
     // of 0.0 to 1.0.
-    let graphScale = 1.2e-9
+    let graphScale = 0.01
     
-    var testResult = 0
+    var testResult = TestResult(count: 0, sum: 0, value: 0)
     var scaledTestResult = 0.0
     var graphPoints = [CGPoint]()
     
@@ -135,9 +135,9 @@ final class DataModel: ObservableObject {
         }
     }
     
-    func updateTestResults(testResult: Int) {
+    func updateTestResults(testResult: TestResult) {
         resultCount += 1
-        scaledTestResult = (Double(testResult) * graphScale) + graphYoffset
+        scaledTestResult = (testResult.value * graphScale) + graphYoffset
         if (graphPoints.count >= resultsPerGraph - 1) {
             for i in stride(from: graphPoints.count - 1, to: 0, by: -1) {
                 graphPoints[i].x = graphPoints[i-1].x

@@ -155,6 +155,10 @@ class Camera: NSObject {
         
         captureSession.addInput(deviceInput)
         captureSession.addOutput(photoOutput)
+        
+        // Jib: Following does not appear to have any affect.
+        // photoOutput.isAppleProRAWEnabled = photoOutput.isAppleProRAWSupported
+        
         captureSession.addOutput(videoOutput)
         
         self.deviceInput = deviceInput
@@ -301,20 +305,6 @@ class Camera: NSObject {
     func takePhoto() {
         guard let photoOutput = self.photoOutput else { return }
         
-        // New
-        /*
-        let r = photoOutput.__availableRawPhotoPixelFormatTypes
-        let query = photoOutput.isAppleProRAWEnabled ?
-            { AVCapturePhotoOutput.isAppleProRAWPixelFormat($0) } :
-            { AVCapturePhotoOutput.isBayerRAWPixelFormat($0) }
-        // Retrieve the RAW format, favoring the Apple ProRAW format when it's in an enabled state.
-        guard let rawFormat =
-            photoOutput.availableRawPhotoPixelFormatTypes.first(where: query)
-        else {
-            fatalError("No RAW format found.")
-        }
-         */
-        
         sessionQueue.async {
         
             var photoSettings = AVCapturePhotoSettings()
@@ -322,13 +312,6 @@ class Camera: NSObject {
             if photoOutput.availablePhotoCodecTypes.contains(.hevc) {
                 photoSettings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.hevc])
             }
-            // New
-            //let query = photoOutput.isAppleProRAWEnabled ?
-            //    { AVCapturePhotoOutput.isAppleProRAWPixelFormat($0) } :
-            //    { AVCapturePhotoOutput.isBayerRAWPixelFormat($0) }
-            //guard let rawFormat =
-            //        photoOutput.availablePhotoPixelFormatTypes. else
-            //            fatalError("No RAW format found.")
             
             let isFlashAvailable = self.deviceInput?.device.isFlashAvailable ?? false
             //photoSettings.flashMode = isFlashAvailable ? .auto : .on

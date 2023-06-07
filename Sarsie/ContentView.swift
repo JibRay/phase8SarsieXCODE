@@ -43,8 +43,8 @@ struct ContentView: View {
                 }
                 MeterView(width: 300, height: 200, value: model.scaledTestResult)
                 
-                // Display test value (sum returned from VirusTest.test()).
-                Text("\(model.testResult)")
+                // Display test value (count & sum returned from VirusTest.test()).
+                Text("\(model.testResult.count): \(model.testResult.sum): \(model.testResult.value)")
                     .font(.system(size: 20))
                     .foregroundColor(.white)
                 
