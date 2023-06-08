@@ -62,17 +62,18 @@ struct GraphView: View {
         .background(Color(red: 0.8, green: 0.8, blue: 0.8))
     }
     
-    // Scale the input points to fit the canvas. Range of x and y
+    // Scale and smooth the input points to fit the canvas. Range of x and y
     // in points must be 0.0 to < 1.0.
     func scalePoints(_ points: [CGPoint]) -> [CGPoint] {
+        let smoothedPoints = smooth(points)
         var scaledPoints = [CGPoint]()
         
-        if !points.isEmpty {
+        if !smoothedPoints.isEmpty {
             // Scale factors:
             let kx = width!
             let ky = height!
             
-            for point in points {
+            for point in smoothedPoints {
                 let x = kx * point.x
                 let y = height! - (ky * point.y)
                 scaledPoints.append(CGPoint(x: x, y: y))
@@ -81,52 +82,44 @@ struct GraphView: View {
         
         return scaledPoints
     }
+    
+    // Low-pass filter the data points.
+    func smooth(_ points: [CGPoint]) -> [CGPoint] {
+        let windowSize = 40 // Must be an even number.
+        var smoothedPoints = [CGPoint]()
+        var previousPoint: CGPoint?
+        
+            if !points.isEmpty {
+                // Increase the number of points by a factor of 4 x windowSize.
+                for point in points {
+                    if (previousPoint != nil) {                        
+                        // Use linear interpolation to fill in between original
+                        // points.
+                        let dx = point.x - previousPoint!.x
+                        let dy = point.y - previousPoint!.y
+                        for step in stride(from: 0, to: 1.0, by: 0.25 / Double(windowSize)) {
+                            let xStep = previousPoint!.x + (step * dx)
+                            let yStep = previousPoint!.y + (step * dy)
+                            smoothedPoints.append(CGPoint(x: xStep, y: yStep))
+                        }
+                    }
+                    previousPoint = point
+                }
+                
+                // Apply low-pass filter.
+                let halfWindow = windowSize / 2
+                for toIndex in stride(from: 0, to: smoothedPoints.count, by: 1) {
+                    let start = toIndex > halfWindow ? toIndex - halfWindow : 0
+                    let end = toIndex < smoothedPoints.count - halfWindow ?
+                        toIndex + halfWindow : smoothedPoints.count - 1
+                    var sum = 0.0
+                    for fromIndex in stride(from: start, to: end, by: 1) {
+                        sum += smoothedPoints[fromIndex].y
+                    }
+                    smoothedPoints[toIndex].y = sum / Double(end - start)
+                }
+            }
+        
+        return smoothedPoints
+    }
 }
-
-/*
- struct ChartValue {
- let value: Double
- let underlyingValue: Double
- }
- 
- class ChartModel {
- let values: [ChartValue]
- 
- init (values: [ChartValue]) {
- self.values = values
- }
- }
- 
- extension ChartModel {
- static func from(rawValues: [Double]) -> ChartModel? {
- // If we have more than one value get the largest. Else fail.
- guard rawValues.count > 1, let largestValue = rawValues.sorted(by: >).first else {
- return nil
- }
- let chartValues = rawValues.map { rawValue -> ChartValue in
- let value = rawValue / largestValue
- return ChartValue(value: max(0, value), underlyingValue: rawValue)
- 
- }
- return ChartModel(values: chartValues)
- }
- }
- 
- protocol ChartView: View {
- var insets: CGFloat { get }
- var stokeWidth: CGFloat { get }
- var color: Color { get }
- var model: ChartModel { get }
- }
- 
- extension ChartView {
- func makeChartPoints(from dataPoints: [ChartValue], size: CGSize) -> [ChartValue]  {
- var currentX: CGFloat = insets
- var size = size
- size.height = size.height - insets * 2
- size.width = size.width - insets * 2
- currentX += xValuesPerPoint(size: size)
- return ChartPoint()
- }
- }
- */

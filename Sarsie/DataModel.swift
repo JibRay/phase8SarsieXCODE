@@ -20,7 +20,7 @@ final class DataModel: ObservableObject {
     let virusThreshold = 95.0
     
     // The maximum mumber of test results shown on the graph.
-    let resultsPerGraph = 20
+    let resultsPerGraph = 5
     
     // The graph vertical scale factor. This scales the value to a range
     // of 0.0 to 1.0.
@@ -138,12 +138,15 @@ final class DataModel: ObservableObject {
     func updateTestResults(testResult: TestResult) {
         resultCount += 1
         scaledTestResult = (testResult.value * graphScale) + graphYoffset
-        if (graphPoints.count >= resultsPerGraph - 1) {
+        
+        // If near the X limit, scroll graph to the left.
+        if (graphPoints.count > resultsPerGraph - 1) {
             for i in stride(from: graphPoints.count - 1, to: 0, by: -1) {
                 graphPoints[i].x = graphPoints[i-1].x
             }
             graphPoints.removeFirst()
         }
+        
         let x = Double(graphPoints.count) / Double(resultsPerGraph)
         graphPoints.append(CGPoint(x: x, y: scaledTestResult))
     }
