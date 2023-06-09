@@ -313,6 +313,13 @@ class Camera: NSObject {
                 photoSettings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.hevc])
             }
             
+            // Jib:
+            let pixelFormatType = kCVPixelFormatType_32BGRA
+            guard photoOutput.availablePhotoPixelFormatTypes.contains(pixelFormatType) else {return}
+            photoSettings = AVCapturePhotoSettings(format:
+                                                        [ kCVPixelBufferPixelFormatTypeKey as String: pixelFormatType])
+            // end
+            
             let isFlashAvailable = self.deviceInput?.device.isFlashAvailable ?? false
             //photoSettings.flashMode = isFlashAvailable ? .auto : .on
             
