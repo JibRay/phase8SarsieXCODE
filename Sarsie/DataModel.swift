@@ -20,7 +20,7 @@ final class DataModel: ObservableObject {
     let virusThreshold = 95.0
     
     // The maximum mumber of test results shown on the graph.
-    let resultsPerGraph = 5
+    let resultsPerGraph = 8
     
     // The graph vertical scale factor. This scales the value to a range
     // of 0.0 to 1.0.
