@@ -27,7 +27,7 @@ class VirusTest {
         var sum = 0
         
         // Extract pixels from imageData.
-        for index in stride(from: imageData.startIndex, to: imageData.endIndex, by: 4) {
+        for index in stride(from: imageData.startIndex, to: (imageData.endIndex - 32), by: 4) {
             let pixel = Pixel(blue: imageData[index],
                               green: imageData[index+1],
                               red: imageData[index+2],
@@ -40,15 +40,5 @@ class VirusTest {
         // value is the average red channel brightness.
         let value: Double = Double(sum) / Double(count)
         return TestResult(count: count, sum: sum, value: value)
-
-        /*
-        var sum = 0
-        for index in stride(from: imageData.startIndex, to: imageData.endIndex, by: 1) {
-            sum += Int(imageData[index])
-        }
-        let count = imageData.endIndex - imageData.startIndex
-        let value: Double = Double(sum) / Double(count)
-        return TestResult(count: count, sum: sum, value: value)
-         */
     }
 }
