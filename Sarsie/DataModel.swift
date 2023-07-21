@@ -17,14 +17,14 @@ final class DataModel: ObservableObject {
     // a negative or positive result and how the graph displays the result.
     
     // The positive virus threshold.
-    let virusThreshold = 20.0
+    let virusThreshold = 80.0
     
     // The maximum mumber of test results shown on the graph.
     let resultsPerGraph = 8
     
     // The graph vertical scale factor. This scales the value to a range
     // of 0.0 to 1.0.
-    let graphScale = 0.02
+    let graphScale = 0.005
     
     var testResult = TestResult(count: 0, sum: 0, value: 0)
     var scaledTestResult = 0.0
