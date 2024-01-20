@@ -1,0 +1,185 @@
+commit 235abd13d6a0b9964c5cd2d1cf52acc514847ee0
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Fri Jun 9 10:39:07 2023 -0700
+
+    Changed pixel format to 32BGRA  in takePhoto(). Virus test now returns average of red channel.
+
+commit 7eb3585cbb5bffa31cc4fdc51256735e74f01ebc
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Fri Jun 9 06:21:56 2023 -0700
+
+    Added code (comments out) to probe image structure in VirusTest.
+
+commit 385f9cd7de85fde2d7dd290911b06ea4aac6d9fb
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Thu Jun 8 13:26:15 2023 -0700
+
+    Added smoothing to GraphView.
+
+commit 96d884657cf628d57f85dfceccaf0fd4fa199372
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Wed Jun 7 16:44:22 2023 -0700
+
+    Added struct TestResult. virusTest now returns count, sum and value which is the average. Removed demo data.
+
+commit 7cdf33502ec9a422bfb6548cc7f1b9f5820cff60
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Tue Jun 6 11:11:21 2023 -0700
+
+    Add copyright to "SARSIE". Added test result display between meter and graph.
+
+commit 2599668ffb4c77c62adb3e38dd4b62be7fdca1b9
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Sat Jun 3 17:16:17 2023 -0700
+
+    Added DataModel.updateTestResults() and associated constants and variables. Graph now scrolls horizontally.
+
+commit 21ffa061ec111951b40152c75c7c969f2a7c5324
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Sat Jun 3 12:31:00 2023 -0700
+
+    Able to successfully scan image in VirusTest.test().
+
+commit 62998637baed038b188612711b6b754eaab6bc77
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Fri Jun 2 04:46:56 2023 -0700
+
+    Moved virusTest to model. Added image access code.
+
+commit 38e47a22223806869430c7a7a454e24cfc48c110
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Fri May 12 12:40:17 2023 -0700
+
+    Reduced demo data from 72 to 36 points. Changed graph scaling.
+
+commit f13002c81e8bc56cfca9152a5e97933d0ea189d9
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Fri May 12 08:35:23 2023 -0700
+
+    Meter and graph now show demo data from Bo.
+
+commit ff247b73f8d4cd74460e6e224553692d0192c770
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Thu May 11 14:45:53 2023 -0700
+
+    Added DemoData and VirusTest classes. This now drives the needle.
+
+commit a7116837ae627d6c5dc486bb24b9204a33fb75da
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Thu May 11 08:13:11 2023 -0700
+
+    General cleanup. Removed unused code.
+
+commit 38666f49265ce6be806099c43f69d29c91c1eda0
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Thu May 11 07:58:02 2023 -0700
+
+    Got trig working in MeterView.
+
+commit d188599994fe758d23d7f661ebe594036a2c32f5
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Sat May 6 07:57:32 2023 -0700
+
+    Added VirusTest.swift.
+
+commit 97e753a0ee00d28f3d110959487ad4876b8a39ca
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Tue May 2 05:08:27 2023 -0700
+
+    Enlarged the graph. Removed the location display.
+
+commit a1d547cb7a40efe5b8caaf31275582c67391f60e
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Sun Apr 30 15:04:39 2023 -0700
+
+    Added graph view grid lines.
+
+commit 677fa81e9c227e30a6ad32721435b98d4ef63305
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Sun Apr 30 14:17:31 2023 -0700
+
+    Got graph view working.
+
+commit a0643c1559466c3f88c4e42359ca18d8ff1dd198
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Fri Apr 28 10:31:47 2023 -0700
+
+    Got meter needle positioning working.
+
+commit d8d8dc83345fbf7fc4f00a83f6d3ad5216d6c754
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Wed Apr 26 13:34:22 2023 -0700
+
+    Added GraphView. Not working yet.
+
+commit 33ee15c24beb31a6d8a648f53ac4cd5908d3c73e
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Wed Apr 26 08:00:53 2023 -0700
+
+    Added MeterView. Not fully implemented yet.
+
+commit 9735bbc56afa6bb4f8d57d7c8e4d0b57614c7191
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Sun Apr 23 12:33:20 2023 -0700
+
+    Got flash working.
+
+commit 6e4f2215fce5cf41fd61ab2798da678d6ee4737c
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Sun Apr 23 07:59:38 2023 -0700
+
+    Improved yellow button. Call to takePhoto now works.
+
+commit a0e89edef413e741e806d9d3327f05e4c4a0b9c7
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Thu Apr 20 06:56:00 2023 -0700
+
+    Improved ContentView layout.
+
+commit de125642820c7ce55bce3c59c474fcfc15478b30
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Wed Apr 19 11:38:19 2023 -0700
+
+    Adjusted Viewfinder size.
+
+commit 42882de7ede382f820b2513466529ce18788cac7
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Wed Apr 19 11:18:26 2023 -0700
+
+    Added WorkspaceSettings.xcsettings, xcuserdata, xcdebuffer, Info.plist
+
+commit 7ed3ba74931bf1d1ab445e7803d2acd34b801edb
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Wed Apr 19 11:10:40 2023 -0700
+
+    Camera started working. No idea why.
+
+commit 7ebc679b9e2a6f4832695c2bf471deaf9a00e8be
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Fri Apr 14 09:32:11 2023 -0700
+
+    Added ViewfinderView. App crashes!
+
+commit 8fff0f761d861817dd5b195f8f8f29e14aaf1d8b
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Tue Apr 11 13:30:47 2023 -0700
+
+    Removed red LED. Changed button to round, yellow. Added log output text field and camera image. Added files from Apple sample app.
+
+commit 32dc052f8047dbe1f2c587967c38256d80277692
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Fri Mar 24 14:02:17 2023 -0700
+
+    Added red LED and Start button.
+
+commit cf11d4f93d91500365c1d5c6b78c9f390d09b762
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Thu Mar 23 15:31:12 2023 -0700
+
+    Initial commit.
+
+commit 6c4384df6046a22cc04d592c4ecab71a5aacaae3
+Author: Jib Ray <jib2ray@gmail.com>
+Date:   Thu Mar 23 15:03:37 2023 -0700
+
+    Initial Commit

@@ -11,7 +11,7 @@ struct Needle: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         
-        // Draw the needle.
+        // Draw the needle inside rect.
         path.move(to: CGPoint(x: rect.midX + 5, y: rect.minY))
         path.addLine(to: CGPoint(x: rect.midX - 5, y: rect.minY))
         path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
@@ -24,25 +24,34 @@ struct Needle: Shape {
 
 // UI graphics have zero at upper left corner.
 struct MeterView: View {
+    let screenRect = UIScreen.main.bounds
     let width: CGFloat?
     let height: CGFloat?
-    let value: Double?
     
     let minAngle: Double = 0.2 // Radians
     let maxAngle: Double = 0.8
     let angleStep: Double?
+    var screenWidth: Double
+    var screenHeight: Double
     var pointerCenter = CGPoint(x: 0, y: 0)
     var pointerRadius: Double?
+    
+    var valueAngle = 0.0
+    var thresholdAngle = 0.0
 
     // width and height are over all size of the meter. value is the
-    // value displayed by the meter, 0.0 to 1.0.
-    init(width: CGFloat, height: CGFloat, value: Double) {
+    // value displayed by the meter, 0.0 to <1.0.
+    init(width: CGFloat, height: CGFloat, value: Double, positiveThreshold: Double) {
+        self.screenWidth = screenRect.size.width
+        self.screenHeight = screenRect.size.height
         self.width = width
         self.height = height
         
-        // Convert value to angle in radians. Note that from here on
-        // zero is the needle at half scale, pointing straight up.
-        self.value = (value - 0.5) * 2.0
+        // Convert value and threshold (0.0 to <1.0) to angles in radians.
+        // Note that from here on zero is the needle at half scale, pointing
+        // straight up.
+        self.valueAngle = (2.0 * value) - 1.0
+        self.thresholdAngle = (2.0 * positiveThreshold) - 1.0
         angleStep = (maxAngle - minAngle) / 5.0001
         self.pointerCenter.x = 0.5 * width
         self.pointerCenter.y = 0.8 * height
@@ -52,22 +61,28 @@ struct MeterView: View {
     var body: some View {
         // Needle is a tapered quadralateral with a circle at its pivot.
         let origin = CGPoint(x: pointerCenter.x - 15, y: pointerCenter.y - 15)
-        let pointerPivotBox = CGRect(origin: origin, size: CGSize(width: 30, height: 30))
+        let boxSize = CGSize(width: 0.0352 * screenHeight, height: 0.0352 * screenHeight)
+        let pointerPivotBox = CGRect(origin: origin, size: boxSize)
         let pointerPivot = Circle().path(in: pointerPivotBox)
         
-        // Needle is red left of the mid-point and green right of the midpoint.
-        let pointerColor = value! > 0.0 ? Color.red : Color.green
+        // Needle is green left of the mid-point and red right of the midpoint.
+        let pointerColor = valueAngle > thresholdAngle ? Color.red : Color.green
         
         // Create the needle graphic.
-        let needleSize = CGSize(width: 20, height: 1.2 * pointerRadius!)
-        let needleBox = CGRect(origin: CGPoint(x: pointerCenter.x - 10, y: 30), size: needleSize)
+        let needleSize = CGSize(width: 0.0235 * screenHeight,
+                                height: 1.2 * pointerRadius!)
+        let needleBox = CGRect(
+            origin: CGPoint(x: pointerCenter.x - 0.0117 * screenHeight,
+                            y: 0.0352 * screenHeight), size: needleSize)
         let needle = Needle().path(in: needleBox)
         
         // Rotate needle so its angle represents the value parameter.
-        let rotatedNeedle = rotateNeedle(needle, by: value!, radius: pointerRadius!)
+        let rotatedNeedle = rotateNeedle(needle, by: valueAngle, radius: pointerRadius!)
+        //let rotatedNeedle = rotateNeedle(needle, by: 1.0, radius: pointerRadius!)
         
         // Meter index marks are dots.
-        let meterDots = meterDots(center: pointerCenter, radius: pointerRadius! + 12.0)
+        let meterDots = meterDots(center: pointerCenter,
+                                  radius: pointerRadius! + 0.0141 * screenHeight)
         
         
         Canvas {
@@ -90,7 +105,7 @@ struct MeterView: View {
     }
     
     // Rotate needle to a new angle. Then translate it so needle point
-    // is on the correct arc.
+    // is on the correct arc. Range of angle argument is -1.0 to +1.0.
     private func rotateNeedle(_ path: Path, by angle: Double, radius: Double) -> Path {
         
         // Calculate translation needed after rotating the needle. Rotation
@@ -109,11 +124,12 @@ struct MeterView: View {
     // Create the meter index marks (dots).
     private func meterDots(center: CGPoint, radius: Double) -> [Path] {
         var dots = [Path]()
+        let dotSize = 0.0176 * screenHeight
         
         for k in stride(from: minAngle, through: maxAngle, by: angleStep!) {
-            let x = center.x + (radius * cos(k * Double.pi)) - 7.5
+            let x = center.x + (radius * cos(k * Double.pi)) - (dotSize / 2.0)
             let y = center.y - (radius * sin(k * Double.pi))
-            dots.append(Circle().path(in: CGRect(x: x, y: y, width: 15, height: 15)))
+            dots.append(Circle().path(in: CGRect(x: x, y: y, width: dotSize, height: dotSize)))
         }
         return dots
     }

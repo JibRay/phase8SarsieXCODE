@@ -16,15 +16,17 @@ final class DataModel: ObservableObject {
     // The next three constants must be set to control the threshold between
     // a negative or positive result and how the graph displays the result.
     
-    // The positive virus threshold.
-    let virusThreshold = 80.0
+    // The positive virus threshold (range: 0.0 - <1.0). This ultimately
+    // controls the color of the needle and the offset of the data with
+    // respect to the red grid line in the graph.
+    let virusThreshold = 0.6
     
     // The maximum mumber of test results shown on the graph.
     let resultsPerGraph = 8
     
     // The graph vertical scale factor. This scales the value to a range
     // of 0.0 to 1.0.
-    let graphScale = 0.005
+    let graphScale = 1.0
     
     var testResult = TestResult(count: 0, sum: 0, value: 0)
     var scaledTestResult = 0.0
