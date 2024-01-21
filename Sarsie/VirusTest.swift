@@ -21,6 +21,8 @@ struct Pixel {
 }
 
 class VirusTest {
+    var testingValue: Double = 0.0 // Only need this while testing.
+    
     // Run a virus test by analyzing the image passed in imageData. This
     // function returns a TestResult object. TestResult.value has a
     // range of 0.0 - <1.0. Negative/positive decision is made by comparing
@@ -46,7 +48,14 @@ class VirusTest {
         
         // value is the average red channel brightness scaled to a range of
         // 0.0 - <1.0.
-        let value: Double = Double(sum) / (Double(count) * 255.0)
+        // let value: Double = Double(sum) / (Double(count) * 255.0)
+        
+        // Following code used only for testing.
+        let value: Double = testingValue
+        testingValue += 0.2
+        testingValue = testingValue > 1.0 ? 0.0 : testingValue
+        // end
+        
         return TestResult(count: count, sum: sum, value: value)
     }
 }

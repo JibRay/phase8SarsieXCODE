@@ -60,7 +60,8 @@ struct MeterView: View {
     
     var body: some View {
         // Needle is a tapered quadralateral with a circle at its pivot.
-        let origin = CGPoint(x: pointerCenter.x - 15, y: pointerCenter.y - 15)
+        let origin = CGPoint(x: pointerCenter.x - (0.0176 * screenHeight),
+                             y: pointerCenter.y - (0.0176 * screenHeight))
         let boxSize = CGSize(width: 0.0352 * screenHeight, height: 0.0352 * screenHeight)
         let pointerPivotBox = CGRect(origin: origin, size: boxSize)
         let pointerPivot = Circle().path(in: pointerPivotBox)
