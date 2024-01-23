@@ -70,7 +70,8 @@ final class DataModel: ObservableObject {
             Task { @MainActor in
                 thumbnailImage = photoData.thumbnailImage
             }
-            savePhoto(imageData: photoData.imageData)
+            // I don't think we need to do this:
+            //savePhoto(imageData: photoData.imageData)
             
             // Pass the image to virusTest for analysis.
             testResult = virusTest.test(imageData: photoData.imageData)

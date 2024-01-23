@@ -58,6 +58,8 @@ struct MeterView: View {
         self.pointerRadius = 0.65 * height
     }
     
+    // In the following there are cases where it makes more sense to scale a
+    // horizontal by the screenHeight. Sizing a square box for example.
     var body: some View {
         // Needle is a tapered quadralateral with a circle at its pivot.
         let origin = CGPoint(x: pointerCenter.x - (0.0176 * screenHeight),
@@ -66,8 +68,8 @@ struct MeterView: View {
         let pointerPivotBox = CGRect(origin: origin, size: boxSize)
         let pointerPivot = Circle().path(in: pointerPivotBox)
         
-        // Needle is green left of the mid-point and red right of the midpoint.
-        let pointerColor = valueAngle > thresholdAngle ? Color.red : Color.green
+        // Needle is green left of thresholdAngle and red right of it.
+        let pointerColor = valueAngle >= thresholdAngle ? Color.red : Color.green
         
         // Create the needle graphic.
         let needleSize = CGSize(width: 0.0235 * screenHeight,
@@ -79,7 +81,6 @@ struct MeterView: View {
         
         // Rotate needle so its angle represents the value parameter.
         let rotatedNeedle = rotateNeedle(needle, by: valueAngle, radius: pointerRadius!)
-        //let rotatedNeedle = rotateNeedle(needle, by: 1.0, radius: pointerRadius!)
         
         // Meter index marks are dots.
         let meterDots = meterDots(center: pointerCenter,
