@@ -50,6 +50,8 @@ class VirusTest {
         // 0.0 - <1.0.
         let value: Double = Double(sum) / (Double(count) * 256.0)
         
+        writeTestResult(image: pixels)
+        
         // Following code used only for testing. For normal use comment this
         // out.
         //let value: Double = testingValue
@@ -58,5 +60,40 @@ class VirusTest {
         // end
         
         return TestResult(count: count, sum: sum, value: value)
+    }
+    
+    func writeTestResult(image: [Pixel]) {
+        var testData = [Int]()
+        for n in 0..<100 {
+            testData.append(n)
+        }
+        let data = Data("Sarsie test results".utf8)
+        
+        createSarsieDirectory()
+        var url = URL.documentsDirectory
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "y-M-d-HH:mm:ss"
+        let filePath = formatter.string(from: Date.now) + ".sarsie"
+        url = url.appending(path: filePath)
+        print(url)
+        do {
+            try data.write(to: url, options: [.atomic])
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func createSarsieDirectory() -> URL {
+        let fileManager = FileManager.default
+        do {
+            let documentsURL = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+            let directoryURL = documentsURL.appendingPathComponent("Sarsie")
+            try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+            return directoryURL
+        } catch {
+            print("Error creating directory: \(error)")
+        }
+        return URL(string: "")!
     }
 }
