@@ -50,7 +50,7 @@ class VirusTest {
         // 0.0 - <1.0.
         let value: Double = Double(sum) / (Double(count) * 256.0)
         
-        writeTestResult(image: pixels)
+        writeTestResult(image: imageData)
         
         // Following code used only for testing. For normal use comment this
         // out.
@@ -62,14 +62,16 @@ class VirusTest {
         return TestResult(count: count, sum: sum, value: value)
     }
     
-    func writeTestResult(image: [Pixel]) {
-        var testData = [Int]()
+    func writeTestResult(image: Data) {
+        /* Test code: */
+        var testData = [UInt8]()
         for n in 0..<100 {
-            testData.append(n)
+            testData.append(UInt8(n))
         }
-        let data = Data("Sarsie test results".utf8)
+
+        let data = Data(testData)
         
-        createSarsieDirectory()
+        // createSarsieDirectory()
         var url = URL.documentsDirectory
         
         let formatter = DateFormatter()
