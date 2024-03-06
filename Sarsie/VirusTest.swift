@@ -63,39 +63,29 @@ class VirusTest {
     }
     
     func writeTestResult(image: Data) {
-        /* Test code: */
+        /* Test code:
         var testData = [UInt8]()
-        for n in 0..<100 {
-            testData.append(UInt8(n))
+        for n in 0..<10000 {
+            testData.append(UInt8(n & 255))
         }
-
-        let data = Data(testData)
         
-        // createSarsieDirectory()
-        var url = URL.documentsDirectory
+        let data = Data(testData)
+        do {
+            let compressedData = try (data as NSData).compressed(using: .zlib)
+        } catch {
+            print(error.localizedDescription)
+        }
+         */
         
         let formatter = DateFormatter()
         formatter.dateFormat = "y-M-d-HH:mm:ss"
         let filePath = formatter.string(from: Date.now) + ".sarsie"
-        url = url.appending(path: filePath)
+        let url = URL.documentsDirectory.appending(path: filePath)
         print(url)
         do {
-            try data.write(to: url, options: [.atomic])
+            try image.write(to: url, options: [.atomic])
         } catch {
             print(error.localizedDescription)
         }
-    }
-    
-    func createSarsieDirectory() -> URL {
-        let fileManager = FileManager.default
-        do {
-            let documentsURL = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-            let directoryURL = documentsURL.appendingPathComponent("Sarsie")
-            try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
-            return directoryURL
-        } catch {
-            print("Error creating directory: \(error)")
-        }
-        return URL(string: "")!
     }
 }
