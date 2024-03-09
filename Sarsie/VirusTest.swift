@@ -78,7 +78,7 @@ class VirusTest {
          */
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "y-M-d-HH:mm:ss"
+        formatter.dateFormat = "y-M-d-HH-mm-ss"
         let filePath = formatter.string(from: Date.now) + ".sarsie"
         let url = URL.documentsDirectory.appending(path: filePath)
         print(url)
