@@ -9,9 +9,10 @@ import CoreLocation
 import CoreLocationUI
 
 final class DataModel: ObservableObject {
+    static let version = 52
     let camera = Camera()
     let photoCollection = PhotoCollection(smartAlbum: .smartAlbumUserLibrary)
-    let virusTest = VirusTest(version: 52)
+    let virusTest = VirusTest(version: version)
     
     // The next three constants must be set to control the threshold between
     // a negative or positive result and how the graph displays the result.
