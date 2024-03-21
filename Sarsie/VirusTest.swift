@@ -44,6 +44,7 @@ class VirusTest {
         for index in stride(from: imageData.startIndex, 
                             to: (imageData.endIndex - 4), by: 4) {
             // Each channel contains a value for 0 to 255.
+            // Expected image format here is 32BGRA.
             let pixel = Pixel(blue: imageData[index],
                               green: imageData[index+1],
                               red: imageData[index+2],

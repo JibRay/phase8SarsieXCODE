@@ -19,20 +19,27 @@ struct ContentView: View {
             VStack {
                 let screenWidth = screenRect.size.width
                 let screenHeight = screenRect.size.height
-                Button {
-                    model.camera.takePhoto()
-                }
-                label: {
-                    Label {
-                        Text("")
-                    } icon: {
-                        ZStack {
-                            Circle()
-                                .strokeBorder(.white, lineWidth: 3)
-                                .frame(width: 0.194 * screenHeight, height: 0.194 * screenHeight)
-                            Circle()
-                                .fill(.yellow)
-                                .frame(width: 0.176 * screenHeight, height: 0.176 * screenHeight)
+                ZStack {
+                    Image(.arrow)
+                        .resizable()
+                        .frame(width: screenWidth, height: 0.194 * screenHeight)
+                    Button {
+                        model.camera.takePhoto()
+                    }
+                    label: {
+                        Label {
+                            Text("")
+                        } icon: {
+                            ZStack {
+                                Circle()
+                                    .strokeBorder(.white, lineWidth: 3)
+                                    .frame(width: 0.194 * screenHeight,
+                                           height: 0.194 * screenHeight)
+                                Circle()
+                                    .fill(.yellow)
+                                    .frame(width: 0.176 * screenHeight,
+                                           height: 0.176 * screenHeight)
+                            }
                         }
                     }
                 }
