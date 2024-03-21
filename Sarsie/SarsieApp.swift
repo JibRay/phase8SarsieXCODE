@@ -9,7 +9,6 @@ import SwiftUI
 
 @main
 struct SarsieApp: App {
-    let version = 240307
     var body: some Scene {
         WindowGroup {
             ContentView()

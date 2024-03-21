@@ -11,7 +11,7 @@ import CoreLocationUI
 final class DataModel: ObservableObject {
     let camera = Camera()
     let photoCollection = PhotoCollection(smartAlbum: .smartAlbumUserLibrary)
-    let virusTest = VirusTest()
+    let virusTest = VirusTest(version: 51)
     
     // The next three constants must be set to control the threshold between
     // a negative or positive result and how the graph displays the result.
@@ -74,7 +74,7 @@ final class DataModel: ObservableObject {
             //savePhoto(imageData: photoData.imageData)
             
             // Pass the image to virusTest for analysis.
-            testResult = virusTest.test(imageData: photoData.imageData)
+            testResult = await virusTest.test(imageData: photoData.imageData)
             updateTestResults(testResult: testResult)
         }
     }

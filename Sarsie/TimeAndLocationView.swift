@@ -12,7 +12,7 @@ import CoreLocationUI
 struct TimeAndLocationView: View {
     @State var date = Date()
     //@StateObject var locationManager = LocationManager()
-    @State var locationManager = LocationManager()
+    //@State var locationManager = LocationManager()
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     let dateFormatter: DateFormatter
@@ -21,7 +21,7 @@ struct TimeAndLocationView: View {
         dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .long
-        locationManager.requestAuthorisation()
+        //locationManager.requestAuthorisation()
     }
     
     var body: some View {
@@ -42,7 +42,7 @@ struct TimeAndLocationView: View {
         }
         .onReceive(timer) { _ in
             date = .now
-            locationManager.requestLocation()
+            //locationManager.requestLocation()
         }
     }
 }

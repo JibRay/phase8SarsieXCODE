@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct TestResult {
     var count: Int
@@ -21,8 +22,15 @@ struct Pixel {
 }
 
 class VirusTest {
+    @StateObject var locationManager = LocationManager()
+    var version: Int
     var testingValue: Double = 0.0 // Only need this while testing.
+    var sum = 0
     
+    init(version: Int) {
+        self.version = version
+    }
+
     // Run a virus test by analyzing the image passed in imageData. This
     // function returns a TestResult object. TestResult.value has a
     // range of 0.0 - <1.0. Negative/positive decision is made by comparing
@@ -31,7 +39,6 @@ class VirusTest {
     // in the graph.
     func test(imageData: Data) -> TestResult {
         var pixels = [Pixel]()
-        var sum = 0
         
         // Extract pixels from imageData.
         for index in stride(from: imageData.startIndex, 
@@ -77,13 +84,28 @@ class VirusTest {
         }
          */
         
+        // UIDevice.current.identifierForVendor!.uuidString
+        
         let formatter = DateFormatter()
+        var headerEntries = "Sarsie version: \(version)\n"
+        formatter.dateFormat = "y-M-d HH:mm:ss"
+        headerEntries += "Date/time: " + formatter.string(from: Date.now) + "\n"
+        headerEntries += "Sum: \(sum)\n"
+        headerEntries += "End header\n"
+
+        for _ in 0..<10240 - headerEntries.count {
+            headerEntries += "\0"
+        }
+        
+        let header = Data(headerEntries.utf8)
+        let fileContent = header + image
+        
         formatter.dateFormat = "y-M-d-HH-mm-ss"
         let filePath = formatter.string(from: Date.now) + ".sarsie"
         let url = URL.documentsDirectory.appending(path: filePath)
         print(url)
         do {
-            try image.write(to: url, options: [.atomic])
+            try fileContent.write(to: url, options: [.atomic])
         } catch {
             print(error.localizedDescription)
         }

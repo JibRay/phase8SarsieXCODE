@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State var testValue = 0.0
-    @StateObject private var model = DataModel()
+    @StateObject var model = DataModel()
     @State var graphPoints = [CGPoint]()
     let screenRect = UIScreen.main.bounds
 
@@ -40,7 +40,7 @@ struct ContentView: View {
                     Text(" SARSIE")
                         .font(.system(size: 40))
                         .foregroundColor(.white)
-                    Text("\u{00A9}")
+                    Text("\u{2122}")
                         .font(.system(size: 25))
                         .foregroundColor(.white)
                 }
