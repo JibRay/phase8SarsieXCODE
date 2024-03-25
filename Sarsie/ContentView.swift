@@ -57,9 +57,11 @@ struct ContentView: View {
                           positiveThreshold: model.virusThreshold)
                 
                 // Display test value (count & sum returned from VirusTest.test()).
+                /*
                 Text("\(model.testResult.count) \(model.testResult.sum) \(model.testResult.value)")
                     .font(.system(size: 20))
                     .foregroundColor(.white)
+                 */
                 
                 GraphView(width: 0.992 * screenWidth,
                           height: 0.235 * screenHeight, points: model.graphPoints)

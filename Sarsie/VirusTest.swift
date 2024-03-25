@@ -89,10 +89,10 @@ class VirusTest {
         // UIDevice.current.identifierForVendor!.uuidString
         
         let formatter = DateFormatter()
-        var headerEntries = "Sarsie version: \(version)\n"
+        var headerEntries = "Sum: \(sum)\n"
         formatter.dateFormat = "y-M-d HH:mm:ss"
         headerEntries += "Date/time: " + formatter.string(from: Date.now) + "\n"
-        headerEntries += "Sum: \(sum)\n"
+        headerEntries += "Sarsie version: \(version)\n"
         headerEntries += "End header\n"
 
         for _ in 0..<10240 - headerEntries.count {
