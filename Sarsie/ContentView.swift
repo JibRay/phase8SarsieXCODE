@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct ContentView: View {
     @State var testValue = 0.0
     @StateObject var model = DataModel()
     @State var graphPoints = [CGPoint]()
     let screenRect = UIScreen.main.bounds
+    @State var audioPlayer: AVAudioPlayer?
 
     var body: some View {
         ZStack {
@@ -24,6 +26,7 @@ struct ContentView: View {
                         .resizable()
                         .frame(width: screenWidth, height: 0.194 * screenHeight)
                     Button {
+                        playSound()
                         model.camera.takePhoto()
                     }
                     label: {
@@ -79,6 +82,18 @@ struct ContentView: View {
             }
         }
         .buttonStyle(.plain)
+    }
+    
+    func playSound() {
+        let path = Bundle.main.path(forResource: "buttonPush.wav", ofType: nil)
+        let url = URL(fileURLWithPath: path!)
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.play()
+        } catch {
+            print("Could not load sound file")
+        }
     }
 }
 

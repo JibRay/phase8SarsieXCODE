@@ -88,13 +88,22 @@ class VirusTest {
         
         // UIDevice.current.identifierForVendor!.uuidString
         
-        let formatter = DateFormatter()
-        var headerEntries = "Sum: \(sum)\n"
+        // The output file is a 10240 byte header followed by the image.
+        let formatter = DateFormatter() // Used to create date/time strings.
+        var headerEntries = ""
+
+        /* Example header entries. For now header is blank except for
+         * Sarsie version and end marker.
+         
+        headerEntries += "Sum: \(sum)\n"
         formatter.dateFormat = "y-M-d HH:mm:ss"
         headerEntries += "Date/time: " + formatter.string(from: Date.now) + "\n"
+         */
+        
         headerEntries += "Sarsie version: \(version)\n"
         headerEntries += "End header\n"
 
+        // Fill the remainder of the header with null characters.
         for _ in 0..<10240 - headerEntries.count {
             headerEntries += "\0"
         }
