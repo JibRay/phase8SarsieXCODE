@@ -9,7 +9,7 @@ import CoreLocation
 import CoreLocationUI
 
 final class DataModel: ObservableObject {
-    static let version = 54
+    static let version = 55
     let camera = Camera()
     let photoCollection = PhotoCollection(smartAlbum: .smartAlbumUserLibrary)
     let virusTest = VirusTest(version: version)

@@ -14,6 +14,11 @@ struct ContentView: View {
     @State var graphPoints = [CGPoint]()
     let screenRect = UIScreen.main.bounds
     @State var audioPlayer: AVAudioPlayer?
+    
+    // Test repeat code:
+    @State private var count = 0
+    @State private var running = false
+    let timer = Timer.publish(every: 4, on: .main, in: .common).autoconnect()
 
     var body: some View {
         ZStack {
@@ -26,8 +31,12 @@ struct ContentView: View {
                         .resizable()
                         .frame(width: screenWidth, height: 0.194 * screenHeight)
                     Button {
-                        playSound()
-                        model.camera.takePhoto()
+                        // Normal button code:
+                        //  playSound()
+                        //  model.camera.takePhoto()
+                        
+                        // Test repeat code:
+                        running = !running
                     }
                     label: {
                         Label {
@@ -53,6 +62,21 @@ struct ContentView: View {
                     Text("\u{2122}")
                         .font(.system(size: 25))
                         .foregroundColor(.white)
+
+                    // Test repeat: added this Text.
+                    Text("\(count)")
+                        .onReceive(timer) { _ in
+                            if running {
+                                count += 1
+                                playSound()
+                                model.camera.takePhoto()
+                            } else {
+                                count = 0
+                            }
+                        }
+                        .foregroundColor(.white)
+                    // End test repeat
+
                 }
                 MeterView(width: 0.763 * screenWidth,
                           height: 0.235 * screenHeight,
