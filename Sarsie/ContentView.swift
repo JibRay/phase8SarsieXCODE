@@ -17,6 +17,7 @@ struct ContentView: View {
     
     // Test repeat code:
     @State private var count = 0
+    @State private var countText = ""
     @State private var running = false
     let timer = Timer.publish(every: 4, on: .main, in: .common).autoconnect()
 
@@ -31,12 +32,18 @@ struct ContentView: View {
                         .resizable()
                         .frame(width: screenWidth, height: 0.194 * screenHeight)
                     Button {
-                        // Normal button code:
-                        //  playSound()
-                        //  model.camera.takePhoto()
-                        
-                        // Test repeat code:
-                        running = !running
+                        // In normal operation pressing this button plays a
+                        // sound then starts a test by taking a photo. If
+                        // model.repeatTests is true, pressing the button
+                        // begins repeated tests (see notes in Text element
+                        // below). Pressing it a second time stops the
+                        // repeated tests.
+                        if model.repeatTests {
+                            running = !running
+                        } else {
+                            playSound()
+                            model.camera.takePhoto()
+                        }
                     }
                     label: {
                         Label {
@@ -63,15 +70,24 @@ struct ContentView: View {
                         .font(.system(size: 25))
                         .foregroundColor(.white)
 
-                    // Test repeat: added this Text.
-                    Text("\(count)")
+                    // This Text element is only visible when model.repeatTests
+                    // is true. See notes in DataModel.swift.
+                    Text(countText)
                         .onReceive(timer) { _ in
-                            if running {
-                                count += 1
-                                playSound()
-                                model.camera.takePhoto()
+                            if model.repeatTests {
+                                if running {
+                                    count += 1
+                                    countText = "\(count)"
+                                    
+                                    // Start next test.
+                                    playSound()
+                                    model.camera.takePhoto()
+                                } else {
+                                    count = 0
+                                    countText = "0"
+                                }
                             } else {
-                                count = 0
+                                countText = ""
                             }
                         }
                         .foregroundColor(.white)

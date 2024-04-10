@@ -104,7 +104,7 @@ class VirusTest {
          */
         
         headerEntries += "Sarsie version: \(version)\n"
-        headerEntries += "value: \(value)\n"
+        headerEntries += "Value: \(value)\n"
         headerEntries += "End header\n"
 
         // Fill the remainder of the header with null characters.
