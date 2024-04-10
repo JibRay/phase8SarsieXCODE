@@ -61,7 +61,7 @@ class VirusTest {
         let value: Double = Double(sum) / (Double(count) * 256.0)
         print("value = \(value)")
         
-        writeTestResult(image: imageData)
+        writeTestResult(image: imageData, value: value)
         
         // Following code used only for testing. For normal use comment this
         // out.
@@ -73,8 +73,8 @@ class VirusTest {
         return TestResult(count: count, sum: sum, value: value)
     }
     
-    // Write the captured image with prepended header to a file.1.
-    func writeTestResult(image: Data) {
+    // Write the captured image with prepended header to a file.
+    func writeTestResult(image: Data, value: Double) {
         /* Test code:
         var testData = [UInt8]()
         for n in 0..<10000 {
@@ -95,8 +95,8 @@ class VirusTest {
         let formatter = DateFormatter() // Used to create date/time strings.
         var headerEntries = ""
 
-        /* Example header entries. For now header is blank except for
-         * Sarsie version and end marker.
+        /* Example header entries. For now header contains only Sarsie
+           version, value and end marker.
          
         headerEntries += "Sum: \(sum)\n"
         formatter.dateFormat = "y-M-d HH:mm:ss"
@@ -104,6 +104,7 @@ class VirusTest {
          */
         
         headerEntries += "Sarsie version: \(version)\n"
+        headerEntries += "value: \(value)\n"
         headerEntries += "End header\n"
 
         // Fill the remainder of the header with null characters.
