@@ -35,7 +35,7 @@ struct ContentView: View {
                         // In normal operation pressing this button plays a
                         // sound then starts a test by taking a photo. If
                         // model.repeatTests is true, pressing the button
-                        // begins repeated tests (see notes in Text element
+                        // begins repeated tests (see notes in Text(countText)
                         // below). Pressing it a second time stops the
                         // repeated tests.
                         if model.repeatTests {
@@ -66,7 +66,7 @@ struct ContentView: View {
                     Text(" SARSIE")
                         .font(.system(size: 40))
                         .foregroundColor(.white)
-                    Text("\u{2122}")
+                    Text("\u{2122}") // Registered trade-mark.
                         .font(.system(size: 25))
                         .foregroundColor(.white)
 
@@ -91,8 +91,6 @@ struct ContentView: View {
                             }
                         }
                         .foregroundColor(.white)
-                    // End test repeat
-
                 }
                 MeterView(width: 0.763 * screenWidth,
                           height: 0.235 * screenHeight,

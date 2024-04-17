@@ -9,7 +9,7 @@ import CoreLocation
 import CoreLocationUI
 
 final class DataModel: ObservableObject {
-    static let version = 58
+    static let version = 59
     
     // When the repeatTests is set to true, pressing the button starts
     // repeating tests. Tests repeat at a regular interval set in the timer

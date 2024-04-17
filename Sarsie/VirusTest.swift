@@ -54,8 +54,8 @@ class VirusTest {
             pixels.append(pixel)
             sum += Int(pixel.red) // Sum the red channel pixels.
         }
-        let count = (imageData.endIndex - startIndex) / 4
         
+        let count = (imageData.endIndex - startIndex) / 4
         // value is the average red channel brightness scaled to a range of
         // 0.0 - <1.0.
         let value: Double = Double(sum) / (Double(count) * 256.0)
