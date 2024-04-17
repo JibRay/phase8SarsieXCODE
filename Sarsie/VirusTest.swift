@@ -26,6 +26,7 @@ class VirusTest {
     var version: Int
     var testingValue: Double = 0.0 // Only need this while testing.
     var sum = 0
+    var hits = 0
     
     init(version: Int) {
         self.version = version
@@ -41,35 +42,24 @@ class VirusTest {
         var pixels = [Pixel]()
         var startIndex = imageData.startIndex + 32768
         
-        // Extract pixels from imageData.
         sum = 0
-        for index in stride(from: startIndex,
-                            to: (imageData.endIndex - 4), by: 4) {
-            // Each channel contains a value from 0 to 255.
-            // Expected image format here is 32BGRA.
-            let pixel = Pixel(blue: imageData[index],
-                              green: imageData[index+1],
-                              red: imageData[index+2],
-                              alpha: imageData[index+3])
-            pixels.append(pixel)
-            sum += Int(pixel.red) // Sum the red channel pixels.
+        hits = 0
+        for index in stride(from: startIndex, to: (imageData.endIndex - 4), by: 4) {
+            if( imageData[index+2]  < 180 && imageData[index+2]  >  120)  {  // CLIP SPIKES
+                sum += Int(imageData[index+2]) // Sum the old red channel pixels.
+                hits += 1
+            }
         }
         
-        let count = (imageData.endIndex - startIndex) / 4
-        // value is the average red channel brightness scaled to a range of
-        // 0.0 - <1.0.
-        let value: Double = Double(sum) / (Double(count) * 256.0)
+         let count = hits
+        // let count = (imageData.endIndex - startIndex) / 4
+        //count = 12186087 always
+         let value: Double = Double(sum) / (Double(hits) * 256.0)
         print("value = \(value)")
-        
+        //print("hits = \(hits)")
+
         writeTestResult(image: imageData, value: value)
-        
-        // Following code used only for testing. For normal use comment this
-        // out.
-        //let value: Double = testingValue
-        //testingValue += 0.2
-        //testingValue = testingValue > 1.0 ? 0.0 : testingValue
-        // end
-        
+       
         return TestResult(count: count, sum: sum, value: value)
     }
     
