@@ -8,22 +8,13 @@
 import SwiftUI
 
 struct GraphView: View {
-    // May not need this: let screenRect = UIScreen.main.bounds
     let width: CGFloat?
     let height: CGFloat?
-/* May not need these:
-    var screenWidth: Double
-    var screenHeight: Double
- */
     var points = [CGPoint]()
     
     // width and height are display size in pixels.
     // The X and Y in points ranges from 0.0 to <1.0.
     init(width: CGFloat, height: CGFloat, points: [CGPoint]) {
-        /* May not need these:
-        self.screenWidth = screenRect.size.width
-        self.screenHeight = screenRect.size.height
-         */
         self.width = width
         self.height = height
         self.points = scalePoints(points)

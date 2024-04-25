@@ -9,13 +9,13 @@ import CoreLocation
 import CoreLocationUI
 
 final class DataModel: ObservableObject {
-    static let version = 59
+    static let version = 60
     
     // When the repeatTests is set to true, pressing the button starts
     // repeating tests. Tests repeat at a regular interval set in the timer
     // object definition in ContentView.swift. Tests repeat until the button
     // is pressed a second time.
-    let repeatTests = true
+    let repeatTests = false
     
     let camera = Camera()
     let photoCollection = PhotoCollection(smartAlbum: .smartAlbumUserLibrary)
