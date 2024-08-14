@@ -107,7 +107,8 @@ struct ContentView: View {
                  */
                 
                 GraphView(width: 0.992 * screenWidth,
-                          height: 0.235 * screenHeight, points: model.graphPoints)
+                          height: 0.235 * screenHeight, 
+                          threshold: model.virusThreshold, points: model.graphPoints)
                 TimeAndLocationView()
                 Spacer()
                 // For release set size to 4 x 3. For testing

@@ -10,13 +10,16 @@ import SwiftUI
 struct GraphView: View {
     let width: CGFloat?
     let height: CGFloat?
+    let threshold: Double?
     var points = [CGPoint]()
     
-    // width and height are display size in pixels.
-    // The X and Y in points ranges from 0.0 to <1.0.
-    init(width: CGFloat, height: CGFloat, points: [CGPoint]) {
+    // width and height are display size in pixels. Threshold is the virus
+    // positive threshold (0.0 - <1.0). A red horizontal line is drawn at
+    // this value. The X and Y in points ranges from 0.0 to <1.0.
+    init(width: CGFloat, height: CGFloat, threshold: Double, points: [CGPoint]) {
         self.width = width
         self.height = height
+        self.threshold = threshold
         self.points = scalePoints(points)
     }
 
@@ -34,9 +37,9 @@ struct GraphView: View {
             context.stroke(path, with: .color(.blue),
                            style: StrokeStyle(lineWidth: 2))
             
-            // Draw the horizontal center line.
+            // Draw the horizontal threshold line.
             path = Path()
-            y = height! / 2
+            y = height! * (1.0 - threshold!)
             path.move(to: CGPoint(x: 0.0, y: y))
             path.addLine(to: CGPoint(x: width!, y: y))
             context.stroke(path, with: .color(.red),

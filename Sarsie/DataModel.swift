@@ -9,7 +9,7 @@ import CoreLocation
 import CoreLocationUI
 
 final class DataModel: ObservableObject {
-    static let version = 61
+    static let version = 62
     
     // When the repeatTests is set to true, pressing the button starts
     // repeating tests. Tests repeat at a regular interval set in the timer
@@ -21,23 +21,19 @@ final class DataModel: ObservableObject {
     let photoCollection = PhotoCollection(smartAlbum: .smartAlbumUserLibrary)
     let virusTest = VirusTest(version: version)
     
-    static let graphTop = 0.7
-    static let graphBottom = 0.4
+    static let graphTop = 1.0
+    static let graphBottom = 0.0
     
     // The next three constants must be set to control the threshold between
     // a negative or positive result and how the graph displays the result.
     
     // The positive virus threshold (range: 0.0 - <1.0). This ultimately
-    // controls the color of the needle and the offset of the data with
-    // respect to the red grid line in the graph.
-    let virusThreshold = (graphTop + graphBottom) / 2.0
+    // controls the color of the needle and the vertical position of the
+    // read line in the graph.
+    let virusThreshold = 0.5
     
     // The maximum mumber of test results shown on the graph.
     let resultsPerGraph = 8
-    
-    // The graph vertical scale factor. This scales the value to a range
-    // of 0.0 to 1.0.
-    let graphScale = 1.0 / (graphTop - graphBottom)
     
     var testResult = TestResult(count: 0, sum: 0, value: 0)
     var scaledTestResult = 0.0
@@ -48,11 +44,9 @@ final class DataModel: ObservableObject {
     
     var isPhotosLoaded = false
     
-    private var graphYoffset = 0.0
     private var resultCount = 0
-
+    
     init() {
-        graphYoffset = 0.5 - (graphScale * virusThreshold)
         Task {
             await handleCameraPreviews()
         }
@@ -151,7 +145,8 @@ final class DataModel: ObservableObject {
     
     func updateTestResults(testResult: TestResult) {
         resultCount += 1
-        scaledTestResult = (testResult.value * graphScale) + graphYoffset
+        
+        scaledTestResult = (testResult.value)
 
         // If the graph is empty insert a starting point.
         if (graphPoints.count == 0) {

@@ -46,7 +46,7 @@ class VirusTest {
         hits = 0
         for index in stride(from: startIndex, to: (imageData.endIndex - 4), by: 4) {
             if( imageData[index+2]  < 180 && imageData[index+2]  >  120)  {  // CLIP SPIKES
-                sum += Int(imageData[index+2]) // Sum the old red channel pixels.
+                sum += Int(imageData[index+2]) // Sum the only red channel pixels.
                 hits += 1
             }
         }
@@ -54,13 +54,19 @@ class VirusTest {
          let count = hits
         // let count = (imageData.endIndex - startIndex) / 4
         //count = 12186087 always
+        
+        // Value is 0.0 to <1.0
          let value: Double = Double(sum) / (Double(hits) * 256.0)
         print("value = \(value)")
         //print("hits = \(hits)")
 
+        testingValue += 0.1
+        testingValue = testingValue >= 1.0 ? 0.0 : testingValue
+        
         writeTestResult(image: imageData, value: value)
-       
+
         return TestResult(count: count, sum: sum, value: value)
+        // return TestResult(count: count, sum: sum, value: testingValue)
     }
     
     // Write the captured image with prepended header to a file.
