@@ -9,7 +9,7 @@ import CoreLocation
 import CoreLocationUI
 
 final class DataModel: ObservableObject {
-    static let version = 60
+    static let version = 61
     
     // When the repeatTests is set to true, pressing the button starts
     // repeating tests. Tests repeat at a regular interval set in the timer
@@ -151,10 +151,11 @@ final class DataModel: ObservableObject {
     
     func updateTestResults(testResult: TestResult) {
         resultCount += 1
-        
+        scaledTestResult = (testResult.value * graphScale) + graphYoffset
+
         // If the graph is empty insert a starting point.
         if (graphPoints.count == 0) {
-            graphPoints.append(CGPoint(x: 0.0, y: 0.5))
+            graphPoints.append(CGPoint(x: 0.0, y: scaledTestResult))
         }
         // If near the X limit, scroll graph to the left.
         if (graphPoints.count > resultsPerGraph - 1) {
@@ -164,7 +165,6 @@ final class DataModel: ObservableObject {
             graphPoints.removeFirst()
         }
         
-        scaledTestResult = (testResult.value * graphScale) + graphYoffset
         let x = Double(graphPoints.count) / Double(resultsPerGraph)
         graphPoints.append(CGPoint(x: x, y: scaledTestResult))
     }
