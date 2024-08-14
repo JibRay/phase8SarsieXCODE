@@ -55,7 +55,7 @@ struct GraphView: View {
                 }
                 context.stroke(
                     path, with: .color(.black),
-                    style: StrokeStyle(lineWidth: 3))
+                    style: StrokeStyle(lineWidth: 6))
             }
         }
         .frame(width: width, height: height)

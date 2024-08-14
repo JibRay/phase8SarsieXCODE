@@ -151,8 +151,11 @@ final class DataModel: ObservableObject {
     
     func updateTestResults(testResult: TestResult) {
         resultCount += 1
-        scaledTestResult = (testResult.value * graphScale) + graphYoffset
         
+        // If the graph is empty insert a starting point.
+        if (graphPoints.count == 0) {
+            graphPoints.append(CGPoint(x: 0.0, y: 0.5))
+        }
         // If near the X limit, scroll graph to the left.
         if (graphPoints.count > resultsPerGraph - 1) {
             for i in stride(from: graphPoints.count - 1, to: 0, by: -1) {
@@ -161,6 +164,7 @@ final class DataModel: ObservableObject {
             graphPoints.removeFirst()
         }
         
+        scaledTestResult = (testResult.value * graphScale) + graphYoffset
         let x = Double(graphPoints.count) / Double(resultsPerGraph)
         graphPoints.append(CGPoint(x: x, y: scaledTestResult))
     }
