@@ -1,0 +1,57 @@
+{
+  "buildCommand" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildAndRun"
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "fb07954df071511e5d21ea928487417c31f99998f8a7345f9a7c10ab00e850dd"
+    }
+  ],
+  "containerPath" : "/Users/bogehring/Desktop/Secret Sauce/Secret Sauce.xcodeproj",
+  "continueBuildingAfterErrors" : false,
+  "dependencyScope" : "workspace",
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "x86_64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "macosx",
+      "sdk" : "macosx15.0",
+      "sdkVariant" : "macos",
+      "supportedArchitectures" : [
+        "x86_64h",
+        "x86_64"
+      ],
+      "targetArchitecture" : "x86_64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/bogehring/Desktop/GRAPH_EM/Make Graphs/Make Graphs/Secret_Sauce-ggevclrmmifuizctzdftqvzcwdfg/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/bogehring/Desktop/GRAPH_EM/Make Graphs/Make Graphs/Secret_Sauce-ggevclrmmifuizctzdftqvzcwdfg/Build/Products",
+      "derivedDataPath" : "/Users/bogehring/Desktop/GRAPH_EM/Make Graphs/Make Graphs",
+      "indexDataStoreFolderPath" : "/Users/bogehring/Desktop/GRAPH_EM/Make Graphs/Make Graphs/Secret_Sauce-ggevclrmmifuizctzdftqvzcwdfg/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/bogehring/Desktop/GRAPH_EM/Make Graphs/Make Graphs/Secret_Sauce-ggevclrmmifuizctzdftqvzcwdfg/Index.noindex/PrecompiledHeaders",
+      "pchPath" : "/Users/bogehring/Desktop/GRAPH_EM/Make Graphs/Make Graphs/Secret_Sauce-ggevclrmmifuizctzdftqvzcwdfg/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO",
+          "ENABLE_XOJIT_PREVIEWS" : "YES",
+          "ONLY_ACTIVE_ARCH" : "YES"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

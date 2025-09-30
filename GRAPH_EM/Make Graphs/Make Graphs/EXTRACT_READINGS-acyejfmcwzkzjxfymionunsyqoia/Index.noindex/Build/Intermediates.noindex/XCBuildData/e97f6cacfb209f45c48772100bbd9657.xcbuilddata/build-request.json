@@ -1,0 +1,48 @@
+{
+  "buildCommand" : {
+    "command" : "prepareForIndexing",
+    "enableIndexBuildArena" : true,
+    "targets" : null
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "e02c07b0d08f519366e8b7783c9c77bb9d1ea35e190d9ffb31d6e333547ee83d"
+    }
+  ],
+  "containerPath" : "/Users/bogehring/Desktop/ANALYZE SARSIE 2/EXTRACT SARSIE 2 READINGS/EXTRACT_READINGS.xcodeproj",
+  "continueBuildingAfterErrors" : true,
+  "dependencyScope" : "workspace",
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "indexbuild",
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/bogehring/Desktop/GRAPH_EM/Make Graphs/Make Graphs/EXTRACT_READINGS-acyejfmcwzkzjxfymionunsyqoia/Index.noindex/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/bogehring/Desktop/GRAPH_EM/Make Graphs/Make Graphs/EXTRACT_READINGS-acyejfmcwzkzjxfymionunsyqoia/Index.noindex/Build/Products",
+      "derivedDataPath" : "/Users/bogehring/Desktop/GRAPH_EM/Make Graphs/Make Graphs",
+      "indexDataStoreFolderPath" : "/Users/bogehring/Desktop/GRAPH_EM/Make Graphs/Make Graphs/EXTRACT_READINGS-acyejfmcwzkzjxfymionunsyqoia/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/bogehring/Desktop/GRAPH_EM/Make Graphs/Make Graphs/EXTRACT_READINGS-acyejfmcwzkzjxfymionunsyqoia/Index.noindex/PrecompiledHeaders",
+      "indexRegularBuildIntermediatesPath" : "/Users/bogehring/Desktop/GRAPH_EM/Make Graphs/Make Graphs/EXTRACT_READINGS-acyejfmcwzkzjxfymionunsyqoia/Build/Intermediates.noindex",
+      "indexRegularBuildProductsPath" : "/Users/bogehring/Desktop/GRAPH_EM/Make Graphs/Make Graphs/EXTRACT_READINGS-acyejfmcwzkzjxfymionunsyqoia/Build/Products",
+      "pchPath" : "/Users/bogehring/Desktop/GRAPH_EM/Make Graphs/Make Graphs/EXTRACT_READINGS-acyejfmcwzkzjxfymionunsyqoia/Index.noindex/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO",
+          "ENABLE_XOJIT_PREVIEWS" : "NO",
+          "ONLY_ACTIVE_ARCH" : "YES"
+        }
+      }
+    }
+  },
+  "qos" : "utility",
+  "schemeCommand" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

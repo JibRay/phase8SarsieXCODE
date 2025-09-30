@@ -1,0 +1,2 @@
+Target dependency graph (1 target)
+Target 'EXTRACT_READINGS' in project 'EXTRACT_READINGS' (no dependencies)

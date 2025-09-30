@@ -1,0 +1,60 @@
+{
+  "buildCommand" : {
+    "command" : "prepareForIndexing",
+    "enableIndexBuildArena" : true,
+    "targets" : null
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "e02c07b0d08f519366e8b7783c9c77bb9d1ea35e190d9ffb31d6e333547ee83d"
+    }
+  ],
+  "containerPath" : "/Users/bogehring/Desktop/EXTRACT SARSIE 2 READINGS/EXTRACT_READINGS.xcodeproj",
+  "continueBuildingAfterErrors" : true,
+  "dependencyScope" : "workspace",
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "indexbuild",
+    "activeArchitecture" : "x86_64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "macosx",
+      "sdk" : "macosx15.0",
+      "sdkVariant" : "macos",
+      "supportedArchitectures" : [
+        "x86_64h",
+        "x86_64"
+      ],
+      "targetArchitecture" : "x86_64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/bogehring/Desktop/GRAPH_EM/Make Graphs/Make Graphs/EXTRACT_READINGS-abryxbbvasqflaeeuwaeovmbzzmn/Index.noindex/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/bogehring/Desktop/GRAPH_EM/Make Graphs/Make Graphs/EXTRACT_READINGS-abryxbbvasqflaeeuwaeovmbzzmn/Index.noindex/Build/Products",
+      "derivedDataPath" : "/Users/bogehring/Desktop/GRAPH_EM/Make Graphs/Make Graphs",
+      "indexDataStoreFolderPath" : "/Users/bogehring/Desktop/GRAPH_EM/Make Graphs/Make Graphs/EXTRACT_READINGS-abryxbbvasqflaeeuwaeovmbzzmn/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/bogehring/Desktop/GRAPH_EM/Make Graphs/Make Graphs/EXTRACT_READINGS-abryxbbvasqflaeeuwaeovmbzzmn/Index.noindex/PrecompiledHeaders",
+      "indexRegularBuildIntermediatesPath" : "/Users/bogehring/Desktop/GRAPH_EM/Make Graphs/Make Graphs/EXTRACT_READINGS-abryxbbvasqflaeeuwaeovmbzzmn/Build/Intermediates.noindex",
+      "indexRegularBuildProductsPath" : "/Users/bogehring/Desktop/GRAPH_EM/Make Graphs/Make Graphs/EXTRACT_READINGS-abryxbbvasqflaeeuwaeovmbzzmn/Build/Products",
+      "pchPath" : "/Users/bogehring/Desktop/GRAPH_EM/Make Graphs/Make Graphs/EXTRACT_READINGS-abryxbbvasqflaeeuwaeovmbzzmn/Index.noindex/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO",
+          "ENABLE_XOJIT_PREVIEWS" : "NO",
+          "ONLY_ACTIVE_ARCH" : "YES"
+        }
+      }
+    }
+  },
+  "qos" : "default",
+  "schemeCommand" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

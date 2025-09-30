@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>11</integer>
+	<key>logs</key>
+	<dict>
+		<key>660C879E-A22D-4C75-B651-585053030A34</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>660C879E-A22D-4C75-B651-585053030A34.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>2</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>SARSIE POINT FIELD project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>SARSIE POINT FIELD</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build SARSIE POINT FIELD</string>
+			<key>timeStartedRecording</key>
+			<real>757982068.309129</real>
+			<key>timeStoppedRecording</key>
+			<real>757982068.56229603</real>
+			<key>title</key>
+			<string>Build SARSIE POINT FIELD</string>
+			<key>uniqueIdentifier</key>
+			<string>660C879E-A22D-4C75-B651-585053030A34</string>
+		</dict>
+		<key>D0C3C722-D86B-4A82-BB90-FE2E0E83D7FA</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>D0C3C722-D86B-4A82-BB90-FE2E0E83D7FA.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>2</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>SARSIE POINT FIELD project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>SARSIE POINT FIELD</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build SARSIE POINT FIELD</string>
+			<key>timeStartedRecording</key>
+			<real>757981966.26690805</real>
+			<key>timeStoppedRecording</key>
+			<real>757981966.49940801</real>
+			<key>title</key>
+			<string>Build SARSIE POINT FIELD</string>
+			<key>uniqueIdentifier</key>
+			<string>D0C3C722-D86B-4A82-BB90-FE2E0E83D7FA</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

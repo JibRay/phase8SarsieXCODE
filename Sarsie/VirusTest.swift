@@ -36,30 +36,50 @@ class VirusTest {
     // function returns a TestResult object. TestResult.value has a
     // range of 0.0 - <1.0. Negative/positive decision is made by comparing
     // TestResult.value to DataModel.virusThreshold and is then displayed
-    // as a red or green needle or a value above or below threshold line
-    // in the graph.
+    // as a red or green needle or above or below a red horizontal line on
+    // the graph.
     func test(imageData: Data) -> TestResult {
-        var pixels = [Pixel]()
-        var startIndex = imageData.startIndex + 32768
+        let startIndex = imageData.startIndex + 32768
         
         sum = 0
         hits = 0
         for index in stride(from: startIndex, to: (imageData.endIndex - 4), by: 4) {
             if( imageData[index+2]  < 180 && imageData[index+2]  >  120)  {  // CLIP SPIKES
-                sum += Int(imageData[index+2]) // Sum the only red channel pixels.
+                sum += Int(imageData[index+2]) // Sum only the red channel pixels.
                 hits += 1
             }
         }
         
-         let count = hits
-        // let count = (imageData.endIndex - startIndex) / 4
-        //count = 12186087 always
-        
-        // Value is 0.0 to <1.0
-         let value: Double = Double(sum) / (Double(hits) * 256.0)
-        print("value = \(value)")
-        //print("hits = \(hits)")
+        let count = hits
 
+        // let count = (imageData.endIndex - startIndex) / 4
+        // count = 12186087 always?
+        
+        // Value is 0.0 to <1.0. Everything from here on is aimed at making
+        // the result displayable. Scale and offset can be applied here.
+        var value: Double = Double(sum) / (Double(hits) * 256.0)
+        value -= 0.5
+        value *= 35.0
+        value -= 2.84
+        /*
+         values for SARSIE 002 device
+         value -= 0.5
+         value *= 35.0
+         value -= 2.4
+         values for SARSIE 001 device
+         value -= 0.5
+         value *= 35.0
+         value -= 2.2
+
+    values for Masimo device
+        value -= 0.5
+        value *= 35.0
+        value -= 3.2
+    */
+        print(String(format: "%.4f", value )) //value =
+        //print("hits = \(hits)")
+     // This is used only when checking the operation of the meter and
+        // grapn. In normal operation it is ignored.
         testingValue += 0.1
         testingValue = testingValue >= 1.0 ? 0.0 : testingValue
         
